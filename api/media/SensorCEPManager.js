@@ -267,7 +267,10 @@ Ext.define('Elog.api.media.SensorCEPManager', {
     },
     
     getEventData : function (oEvent) {
-    	var oEventString = this.base64Decode(oEvent.replace(/\n/g,""));
+    	if (oEvent == null || typeof oEvent !== 'string') return null;
+    	
+    	var oEventString = oEvent.replace(/\n/g,"");
+    	var oEventString = this.base64Decode(oEventString);
     	var oEventString = oEventString.replace(/"/g,"'");
 		var oEventObject = Ext.JSON.decode(oEventString, true);
 		return oEventObject;

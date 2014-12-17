@@ -196,8 +196,8 @@ Ext.define('Elog.view.panel.media.sensor.CEPEditor', {
 				        	}
 				        },{
 				        	id: 'idChildCEPEditorListPatternAddAll',
-				        	// iconCls: 'forward',
-				        	icon: 'http://127.0.0.1/lab/elog/sdk/sencha-touch/resources/themes/images/default/pictos/fforward.png',
+				        	iconCls: 'forward',
+				        	// icon: 'http://127.0.0.1/lab/elog/sdk/sencha-touch/resources/themes/images/default/pictos/fforward.png',
 				        	title: 'Add all rules to the editor',
 				        	handler: function() {
 				        		var oChildCEPNestedList = Ext.getCmp('idChildCEPNestedList');

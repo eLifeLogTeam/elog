@@ -61,7 +61,7 @@ Ext.define('Elog.api.media.SensorKeyValueManager', {
     				}
     				else {
 	    				oResult.root.forEach(function(oData, i) {
-							if (typeof oData.data !== 'undefined') {
+							if (typeof oData.data !== 'undefined' && oData.data !== null) {
 								var oString = oData.data.replace(/"/g,"'").replace(/\n/g,"");
 								var oDataObject = Ext.JSON.decode(oString, true);
 								

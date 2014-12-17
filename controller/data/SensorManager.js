@@ -171,8 +171,8 @@ Ext.define('Elog.controller.data.SensorManager', {
         	// sensors: 'AddressChange,GPSLocationEvent,AddressLoopEvent',
         	// sensors: 'AddressChange,GPSLocationEvent,AddressLoopEvent,WifiConnection',
         	// XXX Rename sensor names dueo to the sensor naming policy change 12 Jul 2014
-//        	sensors: 'Esper/CEP/AddressChange,Samsung/GalaxyS4/GPSLocationEvent,Esper/CEP/AddressLoopEvent,Esper/CEP/WifiConnection',
-//        	sensors: 'Esper/CEP/AddressChange,Apple/iPhone3S/GPSLocationEvent,Apple/iPhone4S/GPSLocationEvent,Garmin/Edge500/GPSLocationEvent,Samsung/GalaxyS4/GPSLocationEvent,Esper/CEP/AddressLoopEvent,Esper/CEP/WifiConnection',
+			// sensors: 'Esper/CEP/AddressChange,Samsung/GalaxyS4/GPSLocationEvent,Esper/CEP/AddressLoopEvent,Esper/CEP/WifiConnection',
+			// sensors: 'Esper/CEP/AddressChange,Apple/iPhone3S/GPSLocationEvent,Apple/iPhone4S/GPSLocationEvent,Garmin/Edge500/GPSLocationEvent,Samsung/GalaxyS4/GPSLocationEvent,Esper/CEP/AddressLoopEvent,Esper/CEP/WifiConnection',
         	// sensors: '%GPSLocationEvent,Esper/CEP/AddressChange,Esper/CEP/AddressLoopEvent,Esper/CEP/WifiConnection',
         	sensors: '%GPSLocationEvent,Esper%',
         	// sensors: 'AddressLoopEvent,GPSLocationEvent',

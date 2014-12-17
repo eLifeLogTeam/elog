@@ -251,7 +251,7 @@ Ext.define('Elog.api.Base', {
 	                else {
 	                    if (typeof config.onFail !== 'undefined') {
 	                        config.onFail(oResult);
-	                    }   
+	                    }
 	                }
             	}
             },
@@ -433,6 +433,10 @@ Ext.define('Elog.api.Base', {
         if (!data) {
             return data;
         }
+        
+        if (typeof data != "string" || data.match('^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$') === null ||  data.match(' ') !== null) {
+    		return data;
+    	}
 
         data += '';
 

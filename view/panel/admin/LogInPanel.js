@@ -43,7 +43,8 @@ Ext.define('Elog.view.panel.admin.LogInPanel', {
 				label: 'Username',
 				placeHolder: 'User ID',
 				required: true,
-				clearIcon: true
+				clearIcon: true,
+				value: 'eloguidemo'
 		    },{
 		    	xtype: 'passwordfield',
 				id: 'idElogUserPassword',
@@ -51,14 +52,16 @@ Ext.define('Elog.view.panel.admin.LogInPanel', {
 				label: 'Password',
 				placeHolder: 'password',
 				required: true,
-				clearIcon: true
+				clearIcon: true,
+				value: 'Qwer!234'
 		    },{
 	        	xtype: 'textfield',
 				id: 'idElogServerUrl',
 				name: 'idElogServerUrl',
 				label: 'Server URL',
 				placeHolder: 'Server',
-				value: 'http://127.0.0.1/lab/server/index.php',
+				// value: 'http://127.0.0.1/lab/server/index.php',
+				value: 'http://www.elifelog.org/lab/server/index.php',
 				required: true,
 				clearIcon: true
 		    },{

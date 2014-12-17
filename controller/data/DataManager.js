@@ -809,7 +809,8 @@ Ext.define('Elog.controller.data.DataManager', {
 		this.getMediaTimestampModified().setValue(oModifiedTime);
 		
         if (data.root.hasOwnProperty("endUnixtime")) {
-        	oStartUnixtime = parseInt(data.root.startTimestamp);
+//        	oStartUnixtime = parseInt(data.root.startTimestamp);
+        	oStartUnixtime = parseInt(data.root.startUnixtime);
 			oEndUnixtime = parseInt(data.root.endUnixtime);
         }
         else {

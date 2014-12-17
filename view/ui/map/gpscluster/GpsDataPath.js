@@ -77,7 +77,8 @@ Ext.define('Elog.view.ui.map.gpscluster.GpsDataPath', {
 		if (typeof oResult.root !== 'undefined') {
 			oResult.root.forEach(function(oData, i) {
 				if (typeof oData.data !== 'undefined' &&
-					typeof oData.data.sensor !== 'undefined') {
+					oData.data != null &&
+					oData.data.hasOwnProperty("sensor")) {
 					// base64Decode
 					// TODO: This should be modified to process any GPS sensor data
 					/*
@@ -89,14 +90,14 @@ Ext.define('Elog.view.ui.map.gpscluster.GpsDataPath', {
 					if (oData.data.sensor.indexOf('GPSLocationEvent') > -1) {
 						if (typeof oData.data != 'undefined' && oData.data.hasOwnProperty("latitude")) {
 							
-							oData.data.altitude = oApiBase.base64Decode(oData.data.altitude);
-							oData.data.bearing = oApiBase.base64Decode(oData.data.bearing);
-							oData.data.elapsedRealtimeNanos = oApiBase.base64Decode(oData.data.elapsedRealtimeNanos);
-							oData.data.latitude = oApiBase.base64Decode(oData.data.latitude);
-							oData.data.longitude = oApiBase.base64Decode(oData.data.longitude);
-							oData.data.provider = oApiBase.base64Decode(oData.data.provider);
-							oData.data.providerTimestamp = oApiBase.base64Decode(oData.data.unixtimestamp);
-							oData.data.speed = oApiBase.base64Decode(oData.data.speed);
+							if (oData.data.hasOwnProperty("altitude")) oData.data.altitude = oApiBase.base64Decode(oData.data.altitude);
+							if (oData.data.hasOwnProperty("bearing")) oData.data.bearing = oApiBase.base64Decode(oData.data.bearing);
+							if (oData.data.hasOwnProperty("elapsedRealtimeNanos")) oData.data.elapsedRealtimeNanos = oApiBase.base64Decode(oData.data.elapsedRealtimeNanos);
+							if (oData.data.hasOwnProperty("latitude")) oData.data.latitude = oApiBase.base64Decode(oData.data.latitude);
+							if (oData.data.hasOwnProperty("longitude")) oData.data.longitude = oApiBase.base64Decode(oData.data.longitude);
+							if (oData.data.hasOwnProperty("provider")) oData.data.provider = oApiBase.base64Decode(oData.data.provider);
+							if (oData.data.hasOwnProperty("unixtimestamp")) oData.data.providerTimestamp = oApiBase.base64Decode(oData.data.unixtimestamp);
+							if (oData.data.hasOwnProperty("speed")) oData.data.speed = oApiBase.base64Decode(oData.data.speed);
 							
 							// Check data validation
 							if (parseInt(oData.data.latitude) == 0) {

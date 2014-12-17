@@ -145,7 +145,7 @@ Ext.define('Elog.view.ui.ext.SensorKeyValueDataView', {
     	var oBaseUtil = new Elog.api.Base();
 		if (typeof oResult.root !== 'undefined') {
 			oResult.root.forEach(function(oData, i) {
-				if (typeof oData.data !== 'undefined') {
+				if (typeof oData.data !== 'undefined' && oData.data != null) {
 					if (oViewer.getSkipDataWithoutStatus()) {
 						if (oData.data.hasOwnProperty("status")) {
 							oViewer.setDataArray(oViewer.getDataArray().concat(oData.data));
