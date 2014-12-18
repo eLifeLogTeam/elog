@@ -27,6 +27,7 @@ Ext.define('Elog.view.panel.admin.LogInPanel', {
 	        align: 'center',
 	        pack: 'center'
 	    },
+	    width: '95%',
 	    // maxWidth: 550,
     	/*
          * Here you add lifelog interfaces as cards to the main panel.

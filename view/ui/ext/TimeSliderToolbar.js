@@ -131,7 +131,7 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
 					
 					 Ext.Viewport.setMenu(calendarPanel, {
 					     side: 'bottom',
-					     reveal: true
+					     // reveal: true
 					 });
             	}
 				
