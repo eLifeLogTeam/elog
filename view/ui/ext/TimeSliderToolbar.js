@@ -163,7 +163,8 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
             // cls: 'smallSizeTextFont',
         	labelWrap: true,
             // style: 'font: 12px Arial black',
-            value: new Date(2013,8-1,6,20,0,1), 
+            // value: new Date(2013,8-1,6,20,0,1), 
+            value: new Date(2014,8-1,12,0,0,1), 
             width: '20%',
             listeners: {
             	initialize: function () {
@@ -199,8 +200,10 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
     		id: 'idChildTimeSliderToolbarTimeSlider',
             xtype: 'sliderfield',
             value: 0,
-            minValue: new Date(2013,8-1,6,20,0,1).getTime(),
-	        maxValue: new Date(2013,8-1,6,20,09,59).getTime(),
+            // minValue: new Date(2013,8-1,6,20,0,1).getTime(),
+	        // maxValue: new Date(2013,8-1,6,20,09,59).getTime(),
+    		minValue: new Date(2014,8-1,12,0,0,1).getTime(),
+	        maxValue: new Date(2014,8-1,12,23,59,59).getTime(),
     		width: '35%',
 	        listeners: {
 		    	initialize: function() {
@@ -276,7 +279,8 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
             // cls: 'smallSizeTextFont',
         	labelWrap: true,
             // style: 'font: 12px Arial black',
-            value: new Date(2013,8-1,6,20,09,59), 
+            // value: new Date(2013,8-1,6,20,09,59), 
+            value: new Date(2014,8-1,12,23,59,59), 
             listeners: {
             	initialize: function (oEndTime) {
         			var oApiBase = new Elog.api.Base();
