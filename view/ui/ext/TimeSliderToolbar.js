@@ -68,49 +68,26 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
             	var oChildTimeSliderToolbarSetTimeRange = this;
             	var oTimeSliderToolbar = this.getParent();
                 
-        		if (!this.overlay) {
-        			this.overlay = Ext.Viewport.add({
-        				xtype: 'panel',
-        				modal: true,
-        				caller: this,
-        				hideOnMaskTap: true,
-       					margin: 2,
-       					// draggable: true,
-        				showAnimation: {
-        					type: 'popIn',
-        					duration: 250,
-        					easing: 'ease-out'
-        				},
-        				hideAnimation: {
-        					type: 'popOut',
-        					duration: 250,
-        					easing: 'ease-out'
-        				},
-        				layout: {
-					        type: 'vbox',
-					        align: 'stretch'
-						},
-						defaults: {
-					        flex: 1
-					    },
-        				centered: true,
-        				// TODO: The calendar size should be also proportional for the desktop case. It may use the width fo the launchscreen
-        				width: Ext.os.deviceType == 'Phone'? 260 : '79%',
-        				height: Ext.os.deviceType == 'Phone' ? 220: '25%',
-        				top: '75%',
-        				left: '247px',
-        				items: [{
-        					xtype: 'calendar',
-        					id: 'idChildTimeSliderToolbarTimeRangeSelector',
-		                    viewConfig: {
-		                        viewMode: 'month',
-		                        weekStart: 1,
-		                        value: (oApiBase.getCookie('elogStartTime')) ? (new Date(oApiBase.getCookie('elogStartTime'))) : new Date(2013,8-1,6,20,0,1),
-		                        // When checking the source, viewConfig has only currentDate entity, not value
-		                        currentDate: (oApiBase.getCookie('elogStartTime')) ? (new Date(oApiBase.getCookie('elogStartTime'))) : new Date(2013,8-1,6,20,0,1)
-		                    },
-		                    listeners: {
-            					initialize: function( oCalendar, eOpts ) {
+            	var oMenus = Ext.Viewport.getMenus();
+		            	
+            	if (!oMenus.hasOwnProperty('bottom') || oMenus['bottom'] == null) {
+	            	var calendarPanel = Ext.create('Ext.Menu', {
+						width: '100%',
+	    				height: Ext.os.deviceType == 'Phone' ? 220: '25%',
+						items: [{
+					    	xtype: 'calendar',
+							id: 'idChildTimeSliderToolbarTimeRangeSelector',
+							width: '100%',
+							height: '100%',
+							viewConfig: {
+							    viewMode: 'month',
+							    weekStart: 1,
+							    value: (oApiBase.getCookie('elogStartTime')) ? (new Date(oApiBase.getCookie('elogStartTime'))) : new Date(2013,8-1,6,20,0,1),
+							    // When checking the source, viewConfig has only currentDate entity, not value
+							    currentDate: (oApiBase.getCookie('elogStartTime')) ? (new Date(oApiBase.getCookie('elogStartTime'))) : new Date(2013,8-1,6,20,0,1)
+							},
+							listeners: {
+								initialize: function( oCalendar, eOpts ) {
 							    	// var oApiBase = new Elog.api.Base();
 							    	
 									if (typeof oApiBase.getCookie('elogStartTime') !== "undefined") {
@@ -145,14 +122,20 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
 									oApiBase.setCookie("elogStartTime", oStartTime);
 									oApiBase.setCookie("elogEndTime", oEndTime);
 									
-									oChildTimeSliderToolbarSetTimeRange.overlay.hide();
+									// oChildTimeSliderToolbarSetTimeRange.overlay.hide();
+									Ext.Viewport.toggleMenu('bottom');
 								},
-		                    }
-        				}]
-        			});
-        		}
-        		
-        		this.overlay.show();
+							}
+						}]
+					 });
+					
+					 Ext.Viewport.setMenu(calendarPanel, {
+					     side: 'bottom',
+					     reveal: true
+					 });
+            	}
+				
+				Ext.Viewport.toggleMenu('bottom');
         	},
         },{
             xtype: 'textfield',
