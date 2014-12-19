@@ -47,28 +47,6 @@ Ext.define('Elog.view.ui.panel.CoverFlow', {
     	xtype: 'cover',
 		zIndex: 200,
 		store: 'sensorCoverFlowStore',
-		/*
-        store : {
-            fields: [
-	            'eml_event_timestamp',
-				'key_value',
-				'mediaUrl',
-				'sensor',
-				'sensor_key',
-				'unixtimestamp',
-				'image'
-			],
-            data: [{
-                	eml_event_timestamp: '2014-08-17 13:01:42.000',   
-                	key_value: '/Library/WebServer/Documents/lab/data/people/elog_user_1/Logs/08172014/Autographer/DATA/2014_08_17/13/B00000000_21I4IV_20140817_130141E.JPG', 
-                	mediaUrl: encodeURI('http://127.0.0.1/lab/server/index.php?command=Media.base.GetMedia&userKey=371d56068c259beb03380b44f60eef922eed8f48&params={"mediaType":"image","timeFrom":1408226400,"timeTo":1408312799,"onSuccess":null,"onFail":null,"userKey":"371d56068c259beb03380b44f60eef922eed8f48","isFullPath":true,"filePath":"\/Library\/WebServer\/Documents\/lab\/data\/people\/elog_user_1\/Logs\/08172014\/Autographer\/DATA\/2014_08_17\/13\/B00000000_21I4IV_20140817_130141E.JPG","fileName":"\/Library\/WebServer\/Documents\/lab\/data\/people\/elog_user_1\/Logs\/08172014\/Autographer\/DATA\/2014_08_17\/13\/B00000000_21I4IV_20140817_130141E.JPG","unixTimestamp":"1408273302"}&callback=Ext.data.JsonP.callback3'), 
-                	image: encodeURI('http://127.0.0.1/lab/server/index.php?command=Media.base.GetMedia&userKey=371d56068c259beb03380b44f60eef922eed8f48&params={"mediaType":"image","timeFrom":1408226400,"timeTo":1408312799,"onSuccess":null,"onFail":null,"userKey":"371d56068c259beb03380b44f60eef922eed8f48","isFullPath":true,"filePath":"\/Library\/WebServer\/Documents\/lab\/data\/people\/elog_user_1\/Logs\/08172014\/Autographer\/DATA\/2014_08_17\/13\/B00000000_21I4IV_20140817_130141E.JPG","fileName":"\/Library\/WebServer\/Documents\/lab\/data\/people\/elog_user_1\/Logs\/08172014\/Autographer\/DATA\/2014_08_17\/13\/B00000000_21I4IV_20140817_130141E.JPG","unixTimestamp":"1408273302"}&callback=Ext.data.JsonP.callback3'), 
-                	sensor: 'OMG LIFE/AutographerV1/Image', 
-                	sensor_key: 'imageFilePath', 
-                	unixtimestamp: '1408273302'
-            }]
-        },
-        */
 		dataArray: null,
 		centered: true,
     	itemCls: 'my-cover-item',
