@@ -116,13 +116,7 @@ Ext.define('Elog.api.media.Base', {
     	oMediaManager = this;
     	this.getServerQuery({
     		command: this.getCommands().getList,
-    		params: cfg,
-    		/*
-    		params: {
-    			mediaType: cfg.mediaType,
-                timeFrom: cfg.timeFrom, 
-                timeTo: cfg.timeTo
-    		},*/    		
+    		params: cfg.hasOwnProperty('params') ? cfg.params : cfg,   		
     		onSuccess: function(oResult) {
     			if (typeof oResult.result !== "undefined") {
     				oMediaManager.attachResult(oResult.result);
@@ -190,5 +184,43 @@ Ext.define('Elog.api.media.Base', {
 				}
             }
     	});
-    }
+    },
+    
+    /**
+     * Run command
+     * 
+     * @param {Object} cfg
+     */
+    runCommand: function(cfg) {
+    	// Get preview data
+    	oMediaManager = this;
+    	this.getServerQuery({
+    		command: cfg.command,
+    		params: cfg.params,    		
+    		onSuccess: function(oResult) {
+    			if (typeof oResult.result !== "undefined") {
+    				oMediaManager.attachResult(oResult.result);
+    			}
+    			
+    			if (oResult.root.results != 'false') {
+                	// Set waiting
+    				if (typeof cfg.onSuccess != "undefined") {
+    					cfg.onSuccess(oResult);
+    				}
+                }
+                else {
+                	oMediaManager.logError('Running command failed: '+cfg);
+                	if (typeof cfg.onFail != "undefined") {
+    					cfg.onFail(oResult);
+    				}
+                }
+            },            
+            onFail: function(oResult) {
+            	oMediaManager.logError('Network connection error');
+            	if (typeof cfg.onFail != "undefined") {
+					cfg.onFail(oResult);
+				}
+            }
+    	});
+    },
 });
