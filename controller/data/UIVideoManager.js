@@ -121,11 +121,13 @@ Ext.define('Elog.controller.data.UIVideoManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'video',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	thumbnailWidth: (oChildVideoViewCoverFlow.getThumbnailWidth() == null) ? null : oChildVideoViewCoverFlow.getThumbnailWidth(),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'video',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	thumbnailWidth: (oChildVideoViewCoverFlow.getThumbnailWidth() == null) ? null : oChildVideoViewCoverFlow.getThumbnailWidth(),
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
             	oChildVideoViewVideo.loadData(oResult);

@@ -185,6 +185,14 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
+    		params: {
+    			mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	width: (oThumbnail.getThumbnailWidth() == null) ? 
+	        		null : 
+	        		oController.getChildThumbnailTimelineThumbnail().getThumbnailWidth()*2,
+    		},
     		mediaType: 'image',
         	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
         	timeTo: Math.round(oTimeTo.getTime()/1000),
@@ -311,10 +319,12 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+    			// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
+        	},
         	onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		oController.getChildGpsClusterThumbnailViewThumbnail().onProcessImageList(oResult);
@@ -401,11 +411,13 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
-        	onSuccess: function(oResult) {
+    		params: {
+    			mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
+	        },
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		oChildGpsPathThumbnailViewThumbnail.onProcessImageList(oResult);
         	},
@@ -440,11 +452,13 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	var oResultGetMediaList = oMedia.getMediaList({
-    		mediaType: 'video',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	thumbnailWidth: (oChildVideoGpsPathThumbnailViewCoverFlow.getThumbnailWidth() == null) ? null : oChildVideoGpsPathThumbnailViewCoverFlow.getThumbnailWidth(),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'video',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	thumbnailWidth: (oChildVideoGpsPathThumbnailViewCoverFlow.getThumbnailWidth() == null) ? null : oChildVideoGpsPathThumbnailViewCoverFlow.getThumbnailWidth(),
+	        },
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
             	oChildVideoGpsPathThumbnailViewVideo.loadData(oResult);
@@ -558,11 +572,13 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
+	        },
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		oChildVideoGpsPathThumbnailViewThumbnail.onProcessImageList(oResult);
         	},

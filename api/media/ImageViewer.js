@@ -10,8 +10,6 @@
  *
  */
 Ext.define('Elog.api.media.ImageViewer', {
-    // These are all detected automatically
-    // No need to use @extends, @alternateClassName, @mixin, @alias, @singleton
     extend: 'Elog.api.media.Base',
     config: {
         m_iDefaultImageWidth : 640,

@@ -51,10 +51,12 @@ Ext.define('Elog.controller.data.UITimelineManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
         		var oSimilleTimeline = oController.getSimileTimeline();
@@ -119,10 +121,12 @@ Ext.define('Elog.controller.data.UITimelineManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
         		var oTimeResult = oUtil.parseEvents(oResult);
@@ -169,10 +173,12 @@ Ext.define('Elog.controller.data.UITimelineManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
         		var oTimeResult = oUtil.parseEvents(oResult);

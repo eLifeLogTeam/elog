@@ -10,6 +10,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
        'Elog.view.panel.media.CoverFlowView',
        'Elog.view.panel.media.SlideshowView',
        'Elog.view.panel.media.ThumbnailView',
+       'Elog.view.panel.media.SingleImageThumbnailView',
        'Elog.view.panel.media.FaceThumbnailView',
        'Elog.view.panel.media.ThumbnailSlideshowView',
     ],
@@ -36,6 +37,10 @@ Ext.define('Elog.controller.data.UIImageManager', {
             // UI Image Thumbnail View
             imageThumbnailView: '#idElogImageThumbnailView',
             childImageThumbnailViewThumbnail: '#idChildImageThumbnailViewThumbnail',
+            
+            // UI Single Image Thumbnail View
+            imageSingleImageThumbnailView: '#idElogImageSingleImageThumbnailView',
+            childSingleImageThumbnailViewThumbnail: '#idChildSingleImageThumbnailViewThumbnail',
             
             // UI Face Thumbnail View
             faceThumbnailView: '#idElogFaceThumbnailView',
@@ -70,6 +75,14 @@ Ext.define('Elog.controller.data.UIImageManager', {
             },
             childImageThumbnailViewThumbnail: {
             	initdiv: 'onInitChildImageThumbnailViewThumbnail',
+            	timechange: 'onTimeChange'
+            },
+            
+            // UI Single Image Thumbnail View
+            imageSingleImageThumbnailView: {
+            },
+            childSingleImageThumbnailViewThumbnail: {
+            	initdiv: 'onInitChildSingleImageThumbnailViewThumbnail',
             	timechange: 'onTimeChange'
             },
             
@@ -182,12 +195,14 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
-        	width: oChildImageSlideshowViewSlideshow.getThumbnailWidth(),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
+	        	width: oChildImageSlideshowViewSlideshow.getThumbnailWidth(),
+	        },
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		oChildImageSlideshowViewSlideshow.onProcessImageList(oResult);
         	},
@@ -231,11 +246,13 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		*/
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	width: (oThumbnailWidth == null) ? null : oThumbnailWidth,
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	width: (oThumbnailWidth == null) ? null : oThumbnailWidth,
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
         		// This does not exist. So we have to implement this.
@@ -270,14 +287,57 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
-        	width: oChildImageThumbnailViewThumbnail.getThumbnailWidth(),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
+	        	width: oChildImageThumbnailViewThumbnail.getThumbnailWidth(),
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		oChildImageThumbnailViewThumbnail.onProcessImageList(oResult);
+        	},
+        	onFail: function(oResult) {
+        		oController.attachResult(oResult.result);
+        		oController.updateInstruction();
+        	}
+        });
+    },
+    
+    
+    /**
+     * Image  initialization handler to query initial data to display
+     * 
+     * @param {Object} oEvent
+     * @param {Object} opts
+     * @return {Object|Boolean}
+     */
+    onInitChildSingleImageThumbnailViewThumbnail: function (oEvent, opts) {
+    	// Set search call function
+    	this.setCurrentSearchFunction({
+    		'function' : this.onInitChildSingleImageThumbnailViewThumbnail,
+    		'args' : oEvent
+    	});
+    	
+    	var oMedia = Ext.create('Elog.api.media.Base');
+		var oController = this;
+		var oChildSingleImageThumbnailViewThumbnail = oController.getChildSingleImageThumbnailViewThumbnail();
+		
+		var oTimeFrom = new Date(this.getStartTime().getValue());
+		var oTimeTo = new Date(this.getEndTime().getValue());
+		
+    	return oMedia.runCommand({
+    		command: 'Media.base.GetSingImageThumbnail',
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	width: oChildSingleImageThumbnailViewThumbnail.getThumbnailWidth(),
+        	},
+    		onSuccess: function(oResult) {
+        		oController.attachResult(oResult.result);
+        		oChildSingleImageThumbnailViewThumbnail.onProcessImageList(oResult);
         	},
         	onFail: function(oResult) {
         		oController.attachResult(oResult.result);
@@ -352,12 +412,14 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
-        	width: oChildImageThumbnailSlideshowThumbnail.getThumbnailWidth(),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
+	        	width: oChildImageThumbnailSlideshowThumbnail.getThumbnailWidth(),
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		oChildImageThumbnailSlideshowThumbnail.onProcessImageList(oResult);
         	},
@@ -390,12 +452,14 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
-        	width: oChildImageThumbnailSlideshowSlideshow.getThumbnailWidth(),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	// width: (oEvent.getThumbnailWidth() == null) ? null : oEvent.getThumbnailWidth()*2,
+	        	width: oChildImageThumbnailSlideshowSlideshow.getThumbnailWidth(),
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		oChildImageThumbnailSlideshowSlideshow.onProcessImageList(oResult);
         	},
@@ -429,11 +493,13 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
     	return oMedia.getMediaList({
-    		mediaType: 'image',
-        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-        	timeTo: Math.round(oTimeTo.getTime()/1000),
-        	width: oImageThumbnailSlideshow.getThumbnailWidth(),
-        	onSuccess: function(oResult) {
+    		params: {
+	    		mediaType: 'image',
+	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+	        	timeTo: Math.round(oTimeTo.getTime()/1000),
+	        	width: oImageThumbnailSlideshow.getThumbnailWidth(),
+        	},
+    		onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		oImageThumbnailSlideshow.getItems().items.forEach(function(oItem) {
         			oItem.onProcessImageList(oResult);
