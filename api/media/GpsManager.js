@@ -47,7 +47,8 @@ Ext.define('Elog.api.media.GpsManager', {
                 longitude: ( cfg.mapCenter != null) ? cfg.mapCenter.lng() : null,
                 distance: ( cfg.distance != null) ? cfg.distance : null,
                 timeFrom: cfg.timeFrom,
-                timeTo: cfg.timeTo
+                timeTo: cfg.timeTo,
+            	maxCount: (cfg.hasOwnProperty("maxCount") ? cfg.maxCount : 1000),
     		},
     		onSuccess: function(oResult) {
     			if (typeof oResult.root == "undefined") {
@@ -100,6 +101,7 @@ Ext.define('Elog.api.media.GpsManager', {
     		distance: cfg.maxRadius,
         	timeFrom: cfg.timeFrom, 
         	timeTo: cfg.timeTo,
+            maxCount: (cfg.hasOwnProperty("maxCount") ? cfg.maxCount : 1000),
         	onSuccess: function(oResult) {
         		if (typeof oResult.root == "undefined") {
     				oGpsManager.logError('Server connection failed. Check the internet connection');
