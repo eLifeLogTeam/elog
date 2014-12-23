@@ -179,6 +179,7 @@ Ext.define('Elog.controller.data.SensorManager', {
         	timeFrom: Math.round(oTimeFrom.getTime()/1000),
         	timeTo: Math.round(oTimeTo.getTime()/1000),
         	samplingSecond: 10,
+        	maxCount: 1000,
         	onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
@@ -224,6 +225,7 @@ Ext.define('Elog.controller.data.SensorManager', {
             mapBounds: oEvent.mapBounds,
             timeFrom: Math.round(oTimeFrom.getTime()/1000),
             timeTo: Math.round(oTimeTo.getTime()/1000),
+            maxCount: 1000,
         	onSuccess: function(oResult) {
         		if (typeof oResult.result !== "undefined") {
         			oController.attachResult(oResult.result);
@@ -407,6 +409,7 @@ Ext.define('Elog.controller.data.SensorManager', {
 			        	timeFrom: Math.round(oTimeFrom.getTime()/1000),
 			        	timeTo: Math.round(oTimeTo.getTime()/1000),
             			samplingSecond: 10,
+            			maxCount: 1000,
 			        	onSuccess: function(oResult) {
 			        		oController.attachResult(oResult.result);
 			        		
@@ -528,6 +531,7 @@ Ext.define('Elog.controller.data.SensorManager', {
             mapBounds: oEvent.mapBounds,
             timeFrom: Math.round(oTimeFrom.getTime()/1000),
             timeTo: Math.round(oTimeTo.getTime()/1000),
+            maxCount: 1000,
         	onSuccess: function(oResult) {
         		if (typeof oResult.result !== "undefined") {
         			oController.attachResult(oResult.result);
@@ -612,6 +616,7 @@ Ext.define('Elog.controller.data.SensorManager', {
         	timeFrom: Math.round(oTimeFrom.getTime()/1000),
         	timeTo: Math.round(oTimeTo.getTime()/1000),
 			samplingSecond: 10,
+			maxCount: 1000,
         	onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
