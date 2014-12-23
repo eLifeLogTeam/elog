@@ -90,8 +90,17 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.Thumbnail', {
         /**
          * Image thumbnail display row count
          */
-        rowCount: null
-        
+        rowCount: null,
+        /**
+         * Load images in serial to prevent heaving loading to server or skip the max concurrent connection limit
+         * @type Boolean
+         */
+        serialImageLoading: false,
+        /**
+         * Serial image loading counter. Will be compared with this.getImages().length
+         * @type Number
+         */
+        serialImageLoadingCounter: 0,
     },
 	
     init: function() {
@@ -372,6 +381,7 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.Thumbnail', {
      * Process the query result to retrieve the image list
      * 
      * @param {Object} data
+     * @deprecated
      */
     onSelectTimeRange : function(oTimeFrom, oTimeTo) {
         var oViewer = this;
@@ -445,6 +455,8 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.Thumbnail', {
             var oImage;
             var oStartUnixtimestamp = null;
             var oEndUnixtimestamp = null;
+            var oControl = this;
+            
             for (var i = 0; i < data.length; ++i) {
             	if (data[i].hasOwnProperty("mediaUrl") == false) continue;
             	
@@ -458,7 +470,15 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.Thumbnail', {
                 }
                 
                 // Set image source
-                oImage.src = data[i].mediaUrl;
+                if (oControl.getSerialImageLoading()) {
+                	oControl.setSerialImageLoadingCounter(0);
+                	
+	                oImage.src = "resources/images/transparent.png";
+	                oImage.mediaUrl = data[i].mediaUrl;
+                }
+                else {
+                	oImage.src = data[i].mediaUrl;
+                }
                 
                 if (typeof data[i].lastRecordingTime != "undefined") {
                 	oImage.timestamp = data[i].lastRecordingTime;
@@ -483,7 +503,6 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.Thumbnail', {
                             
             // Draw image objects
             // Here we set the limit on the start and end timestamp from the data
-            var oControl = this;
             
             // oControl.redrawBackground();
             
@@ -492,11 +511,9 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.Thumbnail', {
                 oImage = this.getImages()[i];
                 
                 oImage.onload = function() {
-                    // Draw image
-                	/**
+                    /**
                 	 * TODO: Here is the place to adjust width/height ratio for thumbnail display
                 	 */
-                	
                 	if (typeof this.contextx === "undefined") {
                 		oControl.setDefaultImageHeight(this.naturalHeight);
                 		oControl.setDefaultImageWidth(this.naturalWidth);
@@ -519,6 +536,61 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.Thumbnail', {
                         oControl.getThumbnailHeight()
                     );
                 };
+            }
+        	
+        	// Start serial loading
+            if (oControl.getSerialImageLoading()) {
+            	oControl.setSerialImageLoadingCounter(0);
+        		oControl.runSerialImageLoading();
+            }
+        }
+    },
+    
+    runSerialImageLoading : function () {
+    	var oCurrentCounter = this.getSerialImageLoadingCounter();
+    	var oControl = this;
+    	var oImage = oControl.getImages()[oCurrentCounter];
+    	
+    	// Load image
+        oImage.src = oImage.mediaUrl;    
+        oImage.serialImageLoadingComplete = false;
+        
+        // If failed loading within 1 second, then continue to load the next image
+        setTimeout(function(){
+        	if (oImage.serialImageLoadingComplete == false) {
+        		oCurrentCounter = oCurrentCounter + 1;
+	            
+	            if (oCurrentCounter < oControl.getImages().length) {
+	            	// Set timer 
+	            	oControl.setSerialImageLoadingCounter(oCurrentCounter);
+					oControl.runSerialImageLoading();
+				}
+	            else {
+	            	alert('complete false loading');
+	            }
+        	}
+		}, 1000);
+				
+		// Draw the image on the canvas when loading
+		oImage.onload = function() {
+			oImage.serialImageLoadingComplete = true;
+			oControl.getCanvasContext().drawImage(
+        		oImage,
+        		parseInt(oImage.contextx), 
+                parseInt(oImage.contexty),
+                oControl.getThumbnailWidth(),
+                oControl.getThumbnailHeight()
+            );
+            
+            oCurrentCounter = oCurrentCounter + 1;
+            
+            if (oCurrentCounter < oControl.getImages().length) {
+            	// Set timer 
+            	oControl.setSerialImageLoadingCounter(oCurrentCounter);
+				oControl.runSerialImageLoading();
+			}
+            else {
+            	alert('complete true loading');
             }
         }
     },
