@@ -177,6 +177,7 @@ Ext.define('Elog.controller.data.UIGpsManager', {
         	timeFrom: Math.round(oTimeFrom.getTime()/1000),
         	timeTo: Math.round(oTimeTo.getTime()/1000),
             samplingSecond: 10,
+			maxCount: 1000,
         	onSuccess: function(oResult) {
         		oController.attachResult(oResult.result);
         		
