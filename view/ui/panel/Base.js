@@ -16,11 +16,16 @@ Ext.define('Elog.view.ui.panel.Base', {
     ],
     config: {
     	// XXX Below URLs were in elog base class
+    	/*
     	pictosIconBaseUrl: window.location.origin+"/lab/elog/sdk/sencha-touch/resources/themes/images/default/pictos/",
 		externalIconBaseUrl: window.location.origin+"/lab/elog/sdk/library/buttoniconcollection/",
 		mapIconBaseUrl: window.location.origin+"/lab/elog/sdk/library/mapiconscollection-markers/",
+		*/
+		pictosIconBaseUrl: window.location.origin+window.location.pathname+"sdk/sencha-touch/resources/themes/images/default/pictos/",
+		externalIconBaseUrl: window.location.origin+window.location.pathname+"sdk/library/buttoniconcollection/",
+		mapIconBaseUrl: window.location.origin+window.location.pathname+"sdk/library/mapiconscollection-markers/",
 	
-    	zIndex: 5 // Change this back to 5 less than default '6' to prevent floating panel overlapping
+    //	zIndex: 5 // Change this back to 5 less than default '6' to prevent floating panel overlapping
     },
     /**
      * Chek attached listeners and then add the monitor for those events
