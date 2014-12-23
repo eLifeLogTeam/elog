@@ -160,6 +160,9 @@ Ext.define('Elog.controller.data.UIImageManager', {
     	// UI Image Thumbnail View
     	oController.putTimeChangeListener(oController.getChildImageThumbnailViewThumbnail());
     	
+    	// UI Image SingleImageThumbnail View
+    	oController.putTimeChangeListener(oController.getChildSingleImageThumbnailViewThumbnail());
+    	
     	// UI Image Thumbnail Slideshow View
     	oController.putTimeChangeListener(oController.getChildImageThumbnailSlideshowThumbnail());
     	oController.putTimeChangeListener(oController.getChildImageThumbnailSlideshowSlideshow());
@@ -320,32 +323,44 @@ Ext.define('Elog.controller.data.UIImageManager', {
     		'args' : oEvent
     	});
     	
-    	var oMedia = Ext.create('Elog.api.media.Base');
-		var oController = this;
+    	var oController = this;
 		var oChildSingleImageThumbnailViewThumbnail = oController.getChildSingleImageThumbnailViewThumbnail();
-		
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.runCommand({
-    		command: 'Media.base.GetSingImageThumbnail',
-    		params: {
-	    		mediaType: 'image',
-	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
-	        	timeTo: Math.round(oTimeTo.getTime()/1000),
-	        	width: oChildSingleImageThumbnailViewThumbnail.getThumbnailWidth(),
-        	},
-    		onSuccess: function(oResult) {
-        		oController.attachResult(oResult.result);
-        		oChildSingleImageThumbnailViewThumbnail.onProcessImageList(oResult);
-        	},
-        	onFail: function(oResult) {
-        		oController.attachResult(oResult.result);
-        		oController.updateInstruction();
-        	}
-        });
-    },
+		oController.loadSingleImageThumbnailViewData(oController, oChildSingleImageThumbnailViewThumbnail, oTimeFrom, oTimeTo);
+	},
     
+    loadSingleImageThumbnailViewData: function(oController, oChildSingleImageThumbnail, oTimeFrom, oTimeTo) {
+    	var oInitTimer = setTimeout(function() { 
+			if (oChildSingleImageThumbnail.element.getWidth() === null ||
+	    		oChildSingleImageThumbnail.element.getWidth() < 10) {
+	    		oInitTimer = setTimeout(arguments.callee, 500);
+	    	}
+	    	else {
+	    		var oMedia = Ext.create('Elog.api.media.Base');
+				var oRunResult = oMedia.runCommand({
+		    		command: 'Media.base.GetSingleImageThumbnail',
+		    		params: {
+			    		mediaType: 'image',
+			        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+			        	timeTo: Math.round(oTimeTo.getTime()/1000),
+			        	imageWidth: oChildSingleImageThumbnail.element.getWidth(),
+			        	tileCount: oChildSingleImageThumbnail.getThumbnailRowCount()
+		        	},
+		    		onSuccess: function(oResult) {
+		        		oController.attachResult(oResult.result);
+		        		oChildSingleImageThumbnail.onProcessSingleImageThumbnailView(oResult);
+		        	},
+		        	onFail: function(oResult) {
+		        		oController.attachResult(oResult.result);
+		        		oController.updateInstruction();
+		        	}
+		        });
+				clearTimeout(oInitTimer);
+	    	}
+		}, 500); 
+    },
     
     /**
      * Face Slideshow initialization handler to query initial data to display
@@ -379,6 +394,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
         	timeFrom: Math.round(oTimeFrom.getTime()/1000),
         	timeTo: Math.round(oTimeTo.getTime()/1000),
             width: oChildFaceThumbnailViewThumbnail.getThumbnailWidth(),
+			maxCount: 1000,
         	onSuccess: function(oResult) { 
         		oController.attachResult(oResult.result);
     			var result = oChildFaceThumbnailViewThumbnail.onProcessSensorData(oResult);

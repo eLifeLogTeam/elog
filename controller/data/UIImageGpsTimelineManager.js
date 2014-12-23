@@ -77,7 +77,8 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
             childGpsClusterThumbnailViewThumbnail: {
             	// Init Thumbnail
             	timechange: 'onTimeChange',
-            	initdiv: 'onInitChildGpsClusterThumbnailViewThumbnail',
+            //	initdiv: 'onInitChildGpsClusterThumbnailViewThumbnail',
+            	initdiv: 'onInitChildGpsClusterSingleImageThumbnailViewThumbnail',
             },
             
             // UI ElogGpsPathThumbnailView
@@ -93,7 +94,8 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
             childGpsPathThumbnailViewThumbnail: {
             	// Init Thumbnail
             	timechange: 'onTimeChange',
-            	initdiv: 'onInitChildGpsPathThumbnailViewThumbnail',
+            //	initdiv: 'onInitChildGpsPathThumbnailViewThumbnail',
+            	initdiv: 'onInitChildGpsPathSingleImageThumbnailViewThumbnail',
             },
             
             // UI ElogVideoGpsPathThumbnailView
@@ -109,7 +111,8 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
             childVideoGpsPathThumbnailViewThumbnail: {
             	// Init Thumbnail
             	timechange: 'onTimeChange',
-            	initdiv: 'onInitChildVideoGpsPathThumbnailViewThumbnail',
+            //	initdiv: 'onInitChildVideoGpsPathThumbnailViewThumbnail',
+            	initdiv: 'onInitChildVideoGpsPathSingleImageThumbnailViewThumbnail',
             },// UI Video Slideshow View
             childVideoGpsPathThumbnailViewVideo: {
             	timechange: 'onTimeChange',
@@ -219,7 +222,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
      * 
      * @param {Object} oEvent
      * @param {Object} opts
-     * 
+     * @deprecated
      * @return {Object|Boolean} 
      */
     onChildThumbnailTimelineSimileTimelineShowBubble: function (oEvent, opts) {
@@ -308,7 +311,8 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
     onInitChildGpsClusterThumbnailViewThumbnail: function (oEvent, opts) {
     	// Set search call function
     	this.setCurrentSearchFunction({
-    		'function' : this.onInitChildImageThumbnailViewThumbnail,
+    	//	'function' : this.onInitChildImageThumbnailViewThumbnail,
+    		'function' : this.onInitChildGpsClusterThumbnailViewThumbnail,
     		'args' : oEvent
     	});
     	
@@ -336,6 +340,31 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
         });
     },
     
+    
+    /**
+     * Image slideshow initialization handler to query initial data to display
+     * 
+     * @param {Object} oEvent
+     * @param {Object} opts
+     * @return {Object|Boolean}
+     */
+    onInitChildGpsClusterSingleImageThumbnailViewThumbnail: function (oEvent, opts) {
+    	// Set search call function
+    	this.setCurrentSearchFunction({
+    	//	'function' : this.onInitChildImageThumbnailViewThumbnail,
+    		'function' : this.onInitChildGpsClusterSingleImageThumbnailViewThumbnail,
+    		'args' : oEvent
+    	});
+    	
+    	var oMedia = Ext.create('Elog.api.media.Base');
+		var oController = this;
+		var oChildGpsClusterThumbnailViewThumbnail = oController.getChildGpsClusterThumbnailViewThumbnail();
+		var oTimeFrom = new Date(this.getStartTime().getValue());
+		var oTimeTo = new Date(this.getEndTime().getValue());
+		
+		oController.loadSingleImageThumbnailViewData(oController, oChildGpsClusterThumbnailViewThumbnail, oTimeFrom, oTimeTo);
+	},
+    
     // UI ElogGpsPathThumbnailView
     onInitGpsPathThumbnailView: function (oEvent, opts) {
     	// Set search call function
@@ -361,13 +390,14 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		// Calculate the map boundary
 		oGpsPath.getMapBoundary();
 		
-    	return oManager.getSensorDatabyTimeSpan({
+    	var oResult = oManager.getSensorDatabyTimeSpan({
     		// TODO Below media type should be 'sensor' not 'android'
     		mediaType: 'android',
     		sensors: '%GPSLocationEvent',
         	timeFrom: Math.round(oTimeFrom.getTime()/1000),
         	timeTo: Math.round(oTimeTo.getTime()/1000),
             samplingSecond: 10,
+			maxCount: 1000,
         	onSuccess: function(oResult) { 
         		oController.attachResult(oResult.result);
         		
@@ -383,7 +413,8 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
         var oChildGpsPathThumbnailViewThumbnail = oController.getChildGpsPathThumbnailViewThumbnail();
 		
         if (oChildGpsPathThumbnailViewThumbnail != null) {
-        	this.onInitChildGpsPathThumbnailViewThumbnail(oEvent, opts);
+        //	this.onInitChildGpsPathThumbnailViewThumbnail(oEvent, opts);
+        	this.onInitChildGpsPathSingleImageThumbnailViewThumbnail(oEvent, opts);
         }
     },
     
@@ -428,6 +459,32 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
         });
     },
     
+    
+    /**
+     * Image thumbnail initialization handler to query initial data to display
+     * 
+     * @param {Object} oEvent
+     * @param {Object} opts
+     * @return {Object|Boolean}
+     */
+    onInitChildGpsPathSingleImageThumbnailViewThumbnail: function (oEvent, opts) {
+    	// Set search call function
+    	/*
+    	this.setCurrentSearchFunction({
+    		'function' : this.onInitChildImageThumbnailViewThumbnail,
+    		'args' : oEvent
+    	});
+    	*/
+    	
+    	var oMedia = Ext.create('Elog.api.media.Base');
+		var oController = this;
+		var oChildGpsPathThumbnailViewThumbnail = oController.getChildGpsPathThumbnailViewThumbnail();
+		var oTimeFrom = new Date(this.getStartTime().getValue());
+		var oTimeTo = new Date(this.getEndTime().getValue());
+		
+		oController.loadSingleImageThumbnailViewData(oController, oChildGpsPathThumbnailViewThumbnail, oTimeFrom, oTimeTo);
+		
+    },
     
     // UI ElogVideoGpsPathThumbnailView
     onInitVideoGpsPathThumbnailView: function (oEvent, opts) {
@@ -528,6 +585,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
         	timeFrom: Math.round(oTimeFrom.getTime()/1000),
         	timeTo: Math.round(oTimeTo.getTime()/1000),
             samplingSecond: 10,
+			maxCount: 1000,
         	onSuccess: function(oResult) { 
         		oController.attachResult(oResult.result);
         		
@@ -543,7 +601,8 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
         var oChildVideoGpsPathThumbnailViewThumbnail = oController.getChildVideoGpsPathThumbnailViewThumbnail();
 		
         if (oChildVideoGpsPathThumbnailViewThumbnail != null) {
-        	this.onInitChildVideoGpsPathThumbnailViewThumbnail(oEvent, opts);
+        //	this.onInitChildVideoGpsPathThumbnailViewThumbnail(oEvent, opts);
+        	this.onInitChildVideoGpsPathSingleImageThumbnailViewThumbnail(oEvent, opts);
         }
         
     },
@@ -589,4 +648,60 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
         });
     },
     
+    /**
+     * Image thumbnail initialization handler to query initial data to display
+     * 
+     * @param {Object} oEvent
+     * @param {Object} opts
+     * @return {Object|Boolean}
+     */
+    onInitChildVideoGpsPathSingleImageThumbnailViewThumbnail: function (oEvent, opts) {
+    	// Set search call function
+    	/*
+    	this.setCurrentSearchFunction({
+    		'function' : this.onInitChildImageThumbnailViewThumbnail,
+    		'args' : oEvent
+    	});
+    	*/
+    	
+    	var oMedia = Ext.create('Elog.api.media.Base');
+		var oController = this;
+		var oChildVideoGpsPathThumbnailViewThumbnail = oController.getChildVideoGpsPathThumbnailViewThumbnail();
+		var oTimeFrom = new Date(this.getStartTime().getValue());
+		var oTimeTo = new Date(this.getEndTime().getValue());
+		
+		oController.loadSingleImageThumbnailViewData(oController, oChildVideoGpsPathThumbnailViewThumbnail, oTimeFrom, oTimeTo);
+		
+    },
+    
+    loadSingleImageThumbnailViewData: function(oController, oChildSingleImageThumbnail, oTimeFrom, oTimeTo) {
+    	var oInitTimer = setTimeout(function() { 
+			if (oChildSingleImageThumbnail.element.getWidth() === null ||
+	    		oChildSingleImageThumbnail.element.getWidth() < 10) {
+	    		oInitTimer = setTimeout(arguments.callee, 500);
+	    	}
+	    	else {
+	    		var oMedia = Ext.create('Elog.api.media.Base');
+				var oRunResult = oMedia.runCommand({
+		    		command: 'Media.base.GetSingleImageThumbnail',
+		    		params: {
+			    		mediaType: 'image',
+			        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
+			        	timeTo: Math.round(oTimeTo.getTime()/1000),
+			        	imageWidth: oChildSingleImageThumbnail.element.getWidth(),
+			        	tileCount: oChildSingleImageThumbnail.getThumbnailRowCount()
+		        	},
+		    		onSuccess: function(oResult) {
+		        		oController.attachResult(oResult.result);
+		        		oChildSingleImageThumbnail.onProcessSingleImageThumbnailView(oResult);
+		        	},
+		        	onFail: function(oResult) {
+		        		oController.attachResult(oResult.result);
+		        		oController.updateInstruction();
+		        	}
+		        });
+				clearTimeout(oInitTimer);
+	    	}
+		}, 500); 
+    },
 });
