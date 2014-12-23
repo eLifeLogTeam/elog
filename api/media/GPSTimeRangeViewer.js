@@ -207,7 +207,7 @@ Ext.define('Elog.api.media.GPSTimeRangeViewer', {
                 strokeWeight: 2,
                 map: oGPSTimeRangeViewer.oGoogleMap,
                 // geodesic: true,
-                zIndex: 150
+                // zIndex: 150
             });
             
             // Set click event listener
