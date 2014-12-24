@@ -32,7 +32,6 @@ Ext.define('Elog.controller.data.UIManager', {
             childTimeSliderToolbarStartTime: '#idChildTimeSliderToolbarStartTime',
             endTime: '#idChildTimeSliderToolbarEndTime',
             childTimeSliderToolbarEndTime: '#idChildTimeSliderToolbarEndTime',
-            
             childTimeSliderToolbarSearch: '#idChildTimeSliderToolbarSearch',
             
 			// Timesearch

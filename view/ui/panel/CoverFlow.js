@@ -45,7 +45,7 @@ Ext.define('Elog.view.ui.panel.CoverFlow', {
 		// height: '100%',
 		thumbnailWidth: '128', // in px
     	xtype: 'cover',
-		zIndex: 200,
+		// zIndex: 200,
 		store: 'sensorCoverFlowStore',
 		dataArray: null,
 		centered: true,

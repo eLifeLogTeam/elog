@@ -275,6 +275,7 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.ThumbnailSlider', {
      * Process the query result to retrieve the image list
      * 
      * @param {Object} data
+     * @deprecated
      */
     onSelectTimeRange : function(oTimeFrom, oTimeTo) {
         var oViewer = this;

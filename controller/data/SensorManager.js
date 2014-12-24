@@ -161,7 +161,7 @@ Ext.define('Elog.controller.data.SensorManager', {
     	// var oMedia = Ext.create('Elog.api.media.SensorKeyValueManager');
 		var oManager = oController.getSensorManager();
 		
-    	return oManager.getSensorDatabyTimeSpan({
+    	var oReturnResult = oManager.getSensorDatabyTimeSpan({
     		mediaType: 'android',
     		// sensors: 'LocationChange,WifiConnection,StepMovingStatus,GpsMovingSpeed',
         	// sensors: 'GPSLocationEvent,LocationChange,WifiConnection,GpsMovingSpeed',
@@ -217,7 +217,7 @@ Ext.define('Elog.controller.data.SensorManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oGpsController.getGpsCluster({
+    	var oReturnResult = oGpsController.getGpsCluster({
     		mediaType: 'gps',
     		minRadius: oEvent.minRadius,
     		maxRadius: oEvent.maxRadius,
@@ -401,7 +401,7 @@ Ext.define('Elog.controller.data.SensorManager', {
 	        		oController.attachResult(oResult.result);
 	        		
 	        		// Refresh CEP event viewer	
-			    	return oManager.getSensorDatabyTimeSpan({
+			    	var oReturnResult = oManager.getSensorDatabyTimeSpan({
 			    		mediaType: 'android',
 			    		// sensors: '%GPSLocationEvent,Esper/CEP/AddressChange,Esper/CEP/AddressLoopEvent,Esper/CEP/WifiConnection',
 			        	// List up selected sensors above. Here we first search GPSLocationEvent to update UI map
@@ -523,7 +523,7 @@ Ext.define('Elog.controller.data.SensorManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oGpsController.getGpsCluster({
+    	var oReturnResult = oGpsController.getGpsCluster({
     		mediaType: 'gps',
     		minRadius: oEvent.minRadius,
     		maxRadius: oEvent.maxRadius,

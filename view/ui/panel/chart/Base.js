@@ -18,10 +18,10 @@ Ext.define('Elog.view.ui.panel.chart.Base', {
 		cls: 'card1',
 		layout: 'fit',
 		items: [{
-			xtype: 'toobar',
+			xtype: 'toolbar',
 			top: 0,
 			right: 0,
-			zIndex: 50,
+			// zIndex: 50,
 			style: {
 				background: 'none'
 			},

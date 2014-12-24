@@ -197,7 +197,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -248,7 +248,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		}
 		*/
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -289,7 +289,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -387,7 +387,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		// var oMedia = Ext.create('Elog.api.media.SensorKeyValueManager');
 		var oManager = this.getSensorManager();
 		
-    	return oManager.getSensorDatabyTimeSpan({
+    	var oReturnResult = oManager.getSensorDatabyTimeSpan({
     		// TODO Below media type should be 'sensor' not 'android'
     		mediaType: 'android',
     		sensors: 'Opencv/DetectFace/Image',
@@ -427,7 +427,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -467,7 +467,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -508,7 +508,7 @@ Ext.define('Elog.controller.data.UIImageManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 

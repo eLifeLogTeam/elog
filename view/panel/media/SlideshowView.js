@@ -32,7 +32,7 @@ Ext.define('Elog.view.panel.media.SlideshowView', {
     		width: '100%',
     		height: '100%',
         	xtype: 'elogImageSlideshow',
-    		zIndex: 200
+    		// zIndex: 200
 	    }]
     }
 });

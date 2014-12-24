@@ -56,11 +56,14 @@ Ext.define('Elog.view.ui.map.gpscluster.Base', {
         /**
          * Cluster fill color
          */
-        clusterFillColor : "#00AAFF",
+        // clusterFillColor : "#00AAFF",
+        clusterFillColor : "#00b3fe",
         /**
          * Cluster stroke color
          */
-        clusterStrokeColor : "#FFAA00",
+        // clusterStrokeColor : "#FFAA00",
+    	// clusterStrokeColor : "#3479c4",
+    	clusterStrokeColor : "#00b3fe",
     	/**
     	 * Google geocorder object for reverse-geocoding
     	 */
@@ -234,8 +237,10 @@ Ext.define('Elog.view.ui.map.gpscluster.Base', {
                     clickable: true,
                     map: oGpsCluster.getMap(),
                     radius: (oCluster.radiusKm * 1000 < 1) ? 1 : oCluster.radiusKm * 1000,
+                    // radius: oGpsCluster.getMetersbyPixel(20),
                     zIndex: 100,
                     strokeWeight: oGpsCluster.getClusterStrokeWeight(),
+                    // strokeWeight: oGpsCluster.getMetersbyPixel(5),
                     fillColor: oGpsCluster.getClusterFillColor(),
                     strokeColor: oGpsCluster.getClusterStrokeColor(),
                     fillOpacity: 0.5,

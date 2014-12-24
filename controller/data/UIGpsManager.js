@@ -110,7 +110,7 @@ Ext.define('Elog.controller.data.UIGpsManager', {
 		// Calculate the map boundary
 		oGpsCluster.getMapBoundary();
 		
-    	return oGpsController.getGpsCluster({
+    	var oReturnResult = oGpsController.getGpsCluster({
     		mediaType: 'gps',
     		/*
     		minRadius: (typeof oGpsCluster.getMap() != "undefined") ? 0.02 : 0, // 0.02km --> 20 meters
@@ -170,7 +170,7 @@ Ext.define('Elog.controller.data.UIGpsManager', {
     	// var oMedia = Ext.create('Elog.api.media.SensorKeyValueManager');
 		var oManager = this.getSensorManager();
 		
-    	return oManager.getSensorDatabyTimeSpan({
+    	var oReturnResult = oManager.getSensorDatabyTimeSpan({
     		// TODO Below media type should be 'sensor' not 'android'
     		mediaType: 'android',
     		sensors: '%GPSLocationEvent',

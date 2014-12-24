@@ -168,8 +168,8 @@ Ext.define('Elog.view.ui.map.gpscluster.GpsDataPath', {
 		                clickable: true,
 		                map: oGpsCluster.getMap(),
 		                // TODO: This radius should be proportional to the zoom level
-		                // radius: oViewer.getCircleRadius(), // 10 meter
-		                radius: oViewer.getMetersbyPixel(10), // 10 meter
+		                radius: oViewer.getCircleRadius(), // 10 meter
+		                // radius: oViewer.getMetersbyPixel(30), // 10 pixel
 		                zIndex: 100,
 		                // TODO: Assign different color or size depending on including events
 		                strokeWeight: oGpsCluster.getClusterStrokeWeight(),

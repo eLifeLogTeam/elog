@@ -16,6 +16,7 @@ Ext.define('Elog.view.panel.media.sensor.KeyValueMapView', {
     requires: [
        'Ext.Panel',
        'Elog.view.ui.map.gpscluster.GpsDataPath',
+       'Elog.view.ui.ext.SensorKeyValueDataView',
        'Ext.dataview.DataView'
     ],
     xtype: 'elogKeyValueMapView',

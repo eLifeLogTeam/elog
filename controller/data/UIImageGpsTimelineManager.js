@@ -187,7 +187,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
     			mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -235,7 +235,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeTo = oEvent.evt._end;
 		
 		// This routine can be changed with fireElogEvent('timechange');
-    	return oThumbnail.onSelectTimeRange(oTimeFrom, oTimeTo);
+    	var oReturnResult = oThumbnail.onSelectTimeRange(oTimeFrom, oTimeTo);
     },
     
     /**
@@ -258,7 +258,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
     onInitGpsClusterThumbnailView: function (oEvent, opts) {
     	// Set search call function
     	this.setCurrentSearchFunction({
-    		'function' : this.onInitGpsClusterView,
+    		'function' : this.onInitGpsClusterThumbnailView,
     		'args' : oEvent
     	});
     	
@@ -275,14 +275,16 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		// Calculate the map boundary
 		oGpsCluster.getMapBoundary();
 		
-    	return oGpsController.getGpsCluster({
+    	var oReturnResult = oGpsController.getGpsCluster({
     		mediaType: 'gps',
     		minRadius: oGpsCluster.getMinRadius(),
     		maxRadius: oGpsCluster.getMaxRadius(),
             mapCenter: oGpsCluster.getMapCenter(),
             mapBounds: oGpsCluster.getMapBounds(),
-            timeFrom: oTimeFrom,
-            timeTo: oTimeTo,
+            // timeFrom: oTimeFrom,
+            // timeTo: oTimeTo,
+        	timeFrom: Math.round(oTimeFrom.getTime()/1000),
+        	timeTo: Math.round(oTimeTo.getTime()/1000),
             samplingSecond: 10,
         	onSuccess: function(oResult) {
         		if (typeof oResult.result !== "undefined") {
@@ -299,6 +301,14 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
         		oController.updateInstruction();
         	}
         });
+        
+        // Initialize thumbnail view
+        var oChildGpsClusterThumbnailViewThumbnail = oController.getChildGpsClusterThumbnailViewThumbnail();
+		
+        if (oChildGpsClusterThumbnailViewThumbnail != null) {
+        //	this.onInitChildGpsPathThumbnailViewThumbnail(oEvent, opts);
+        	this.onInitChildGpsClusterSingleImageThumbnailViewThumbnail(oEvent, opts);
+        }
     },
     
     /**
@@ -310,11 +320,6 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
      */
     onInitChildGpsClusterThumbnailViewThumbnail: function (oEvent, opts) {
     	// Set search call function
-    	this.setCurrentSearchFunction({
-    	//	'function' : this.onInitChildImageThumbnailViewThumbnail,
-    		'function' : this.onInitChildGpsClusterThumbnailViewThumbnail,
-    		'args' : oEvent
-    	});
     	
     	var oMedia = Ext.create('Elog.api.media.Base');
 		var oController = this;
@@ -322,7 +327,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -350,11 +355,6 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
      */
     onInitChildGpsClusterSingleImageThumbnailViewThumbnail: function (oEvent, opts) {
     	// Set search call function
-    	this.setCurrentSearchFunction({
-    	//	'function' : this.onInitChildImageThumbnailViewThumbnail,
-    		'function' : this.onInitChildGpsClusterSingleImageThumbnailViewThumbnail,
-    		'args' : oEvent
-    	});
     	
     	var oMedia = Ext.create('Elog.api.media.Base');
 		var oController = this;
@@ -390,7 +390,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		// Calculate the map boundary
 		oGpsPath.getMapBoundary();
 		
-    	var oResult = oManager.getSensorDatabyTimeSpan({
+    	var oReturnResult = oManager.getSensorDatabyTimeSpan({
     		// TODO Below media type should be 'sensor' not 'android'
     		mediaType: 'android',
     		sensors: '%GPSLocationEvent',
@@ -441,7 +441,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
     			mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -630,7 +630,7 @@ Ext.define('Elog.controller.data.UIImageGpsTimelineManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 

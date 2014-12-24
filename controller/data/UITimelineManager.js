@@ -50,7 +50,7 @@ Ext.define('Elog.controller.data.UITimelineManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -120,7 +120,7 @@ Ext.define('Elog.controller.data.UITimelineManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 
@@ -172,7 +172,7 @@ Ext.define('Elog.controller.data.UITimelineManager', {
 		var oTimeFrom = new Date(this.getStartTime().getValue());
 		var oTimeTo = new Date(this.getEndTime().getValue());
 		
-    	return oMedia.getMediaList({
+    	var oReturnResult = oMedia.getMediaList({
     		params: {
 	    		mediaType: 'image',
 	        	timeFrom: Math.round(oTimeFrom.getTime()/1000), 

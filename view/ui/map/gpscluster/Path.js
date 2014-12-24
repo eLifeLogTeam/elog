@@ -123,6 +123,7 @@ Ext.define('Elog.view.ui.map.gpscluster.Path', {
 	        // finding matching path ids
 	        oMapViewer.getCircles().forEach(function(oCircle, i) {
 	        	oCircle.setRadius(oMapViewer.getMetersbyPixel(10));
+	        //	oCircle.setRadius(oMapViewer.getMetersbyPixel(30));
 	        });
         	
     	});

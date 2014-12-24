@@ -32,7 +32,7 @@ Ext.define('Elog.view.panel.media.ThumbnailZoomView', {
     		width: '100%',
     		height: '100%',
         	xtype: 'elogImageThumbnailZoom',
-    		zIndex: 200
+    		// zIndex: 200
 	    }]
     }
 });

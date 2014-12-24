@@ -18,7 +18,8 @@ Ext.define('Elog.view.panel.media.VideoGpsPathThumbnailView', {
     requires: [
        'Ext.Panel',
        'Elog.view.ui.map.gpscluster.GpsDataPath',
-       'Elog.view.ui.panel.div.canvas.image.Thumbnail',
+       // 'Elog.view.ui.panel.div.canvas.image.Thumbnail',
+       'Elog.view.ui.panel.div.canvas.image.SingleImageThumbnail',
        'Elog.view.ui.ext.Video',
        'Elog.view.ui.panel.CoverFlow',
     ],
@@ -73,8 +74,9 @@ Ext.define('Elog.view.panel.media.VideoGpsPathThumbnailView', {
 		    },
 		    items: [{
 		    	id: 'idChildVideoGpsPathThumbnailViewThumbnail',
-	    		xtype: 'elogImageThumbnail',
-	    		zIndex: 100
+	    		// xtype: 'elogImageThumbnail',
+	    		xtype: 'elogSingleImageThumbnail',
+	    		// zIndex: 100
 	    	},{
 		        id: 'idChildVideoGpsPathThumbnailViewGpsPath',
 		        xtype: 'elogGpsDataPath',

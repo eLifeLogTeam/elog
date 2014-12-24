@@ -17,7 +17,8 @@ Ext.define('Elog.view.panel.media.GpsPathThumbnailView', {
     requires: [
        'Ext.Panel',
        'Elog.view.ui.map.gpscluster.GpsDataPath',
-       'Elog.view.ui.panel.div.canvas.image.Thumbnail' 
+       // 'Elog.view.ui.panel.div.canvas.image.Thumbnail',
+       'Elog.view.ui.panel.div.canvas.image.SingleImageThumbnail',
     ],
     xtype: 'elogGpsPathThumbnailView',
     config : {
@@ -34,8 +35,9 @@ Ext.define('Elog.view.panel.media.GpsPathThumbnailView', {
 	        xtype: 'elogGpsDataPath',
 	    },{
 	    	id: 'idChildGpsPathThumbnailViewThumbnail',
-    		xtype: 'elogImageThumbnail',
-    		zIndex: 100
+    		// xtype: 'elogImageThumbnail',
+    		xtype: 'elogSingleImageThumbnail',
+    		// zIndex: 100
     	}]
     }
 });

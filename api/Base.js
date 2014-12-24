@@ -651,6 +651,24 @@ Ext.define('Elog.api.Base', {
 	        	return unescape(y);
 	        }
 	    }
+	    
+	    // In case a user does not have a user account or user's web browser does not accept the cookie
+	    if (c_name == "user_key") {
+	    	// Return demo key
+	    	return unescape("4999d97fa98b40a34412ac393a90e43f17a6b896");
+	    }
+	    else if (c_name == "server_url") {
+	    	return unescape("http%3A//www.elifelog.org/lab/server/index.php");
+	    }
+	    else if (c_name == "elogMapZoomLevel") {
+	    	return unescape("11");
+	    }
+	    else if (c_name == "elogMapCenterLng") {
+	    	return unescape("10.0675976638672");
+	    }
+	    else if (c_name == "elogMapCenterLat") {
+	    	return unescape("44.998664331093565");
+	    }
     },
     
     /**
