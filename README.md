@@ -70,21 +70,6 @@ git clone https://github.com/daverogers/jQueryFileTree.git
 
 Now you are all set to using eLog GUI libraries :)
 
-# eLog APIs Copyrights
-
-First, thanks for using the eLog library. Before claiming any legal statements of our copyrights, let us first explain why we open this library and then proceed to the formal one.
-
-The aim of this research is helping people manage their own lifelogs and precious memories into their own storage. Challenges are that there exists numerous types of lifelogs equal to the number of people out there. What we are trying is to prepare a fundamental tool to help users easily start logging their lifelogs in a systematic way. We also wish a user to have full and sole priviledges on the data access and management.
-
-In this aspect, while all rights of codes published here are reservered to the eLifeLog.org, developers may freely use our codes for personal, educational and research purposes. However we do not allow the commercial use and the use by any company for profit in any steps of your development and products. (Note: One exception is the user interface part which we develop atop Sencha Touch. We decide to follow the original license (GPL V3). eLog UI parts are separately published at GitHub (https://github.com/eLifeLogTeam/elog/))
-
-You can develop and distribute Apps or software programs using our libraries but they should be distributed for free and you should not collect users's lifelog to your server or to any cloud servers in any cases by any means. In other words, your Apps or software should not collect any information (even login IPs) about the user. Your app should work independently (i.e. a strandalone App) without the need for connection or communication with your server. References to our code must be embedded in your codes and appeared in your credits. You may inform us to know either to test or to introduce your work at this web site. 
-
-For formal copyright stuffs, while keeping the above condition mandatory, <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">eLifeLog.org APIs</span> provided by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.elifelog.org" property="cc:attributionName" rel="cc:attributionURL">http://www.elifelog.org</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a> based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.elifelog.org/lab/elog_doc" rel="dct:source">www.elifelog.org</a>.
- 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
-
-
 
 ## Demos
 ### On-line Demo
@@ -109,3 +94,18 @@ See our list of video demos
 Feel free to [post an issue][issues].
 
 [issues]: https://github.com/eLifeLogTeam/elog/issues
+
+
+# eLog APIs Copyrights
+
+First, thanks for using the eLog library. Before claiming any legal statements of our copyrights, let us first explain why we open this library and then proceed to the formal one.
+
+The aim of this research is helping people manage their own lifelogs and precious memories into their own storage. Challenges are that there exists numerous types of lifelogs equal to the number of people out there. What we are trying is to prepare a fundamental tool to help users easily start logging their lifelogs in a systematic way. We also wish a user to have full and sole priviledges on the data access and management.
+
+In this aspect, while all rights of codes published here are reservered to the eLifeLog.org, developers may freely use our codes for personal, educational and research purposes. However we do not allow the commercial use and the use by any company for profit in any steps of your development and products. (Note: One exception is the user interface part which we develop atop Sencha Touch. We decide to follow the original license (GPL V3). eLog UI parts are separately published at GitHub (https://github.com/eLifeLogTeam/elog/))
+
+You can develop and distribute Apps or software programs using our libraries but they should be distributed for free and you should not collect users's lifelog to your server or to any cloud servers in any cases by any means. In other words, your Apps or software should not collect any information (even login IPs) about the user. Your app should work independently (i.e. a strandalone App) without the need for connection or communication with your server. References to our code must be embedded in your codes and appeared in your credits. You may inform us to know either to test or to introduce your work at this web site. 
+
+For formal copyright stuffs, while keeping the above condition mandatory, <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">eLifeLog.org APIs</span> provided by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.elifelog.org" property="cc:attributionName" rel="cc:attributionURL">http://www.elifelog.org</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a> based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.elifelog.org/lab/elog_doc" rel="dct:source">www.elifelog.org</a>.
+ 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
