@@ -13,31 +13,6 @@
  *     });
  * 
  */
- 
-/*
-Ext.define('elogSensorKeyValueModel', {
-	extend: 'Ext.data.Model',
-	config: {
-		fields: [
-			'sensor',
-			'eml_event_timestamp',
-			'unixtimestamp',
-			'newEvent',
-			'oldEvent',
-			'reportStatus',
-			'status',
-			'iconDiv'
-		]
-	}	
-});
-
-Ext.create('Ext.data.Store', {
-	storeId: 'sensorKeyValueStore',
-	model: 'elogSensorKeyValueModel',
-	sorters: 'eml_event_timestamp'
-});
-*/
-
 Ext.define('Elog.view.ui.ext.SensorKeyValueDataView', {
     extend: 'Ext.List',
     requires: [

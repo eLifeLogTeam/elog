@@ -81,8 +81,9 @@ Ext.define('Elog.view.ui.panel.div.canvas.image.SingleImageThumbnail', {
         var iX;
         var iY;
             
-        if (this.getSelectedImageId() !== false) {
+        if (this.getSelectedImageId() !== false && this.getImages().length > this.getSelectedImageId()) {
             var oPrevSelectedImage = this.getImages()[this.getSelectedImageId()];
+            
             var iX = oPrevSelectedImage.contextx;
             var iY = oPrevSelectedImage.contexty;
             

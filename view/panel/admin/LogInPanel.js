@@ -1,7 +1,7 @@
 /**
  * Elog API view: LoginPanel
  * 
- * A panel used for log-in process
+ * A panel used for log-in process. 
  * 
  * 
  * ## Example

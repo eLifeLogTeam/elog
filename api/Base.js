@@ -1,34 +1,45 @@
 /**
- * The base class for eLifeLog Javascript APIs
+ * The base class for eLog Javascript APIs. It provides common functions to eLog APIs 
+ * including the eLog server calls, base directoryies, cookie handler and error handlers.
  * 
- * ## eLog server API list
- * The list of server service APIs is available at [eLifelog Server APIs](#!/guide/server_api).
+ * ## eLog server API call
  * For the service call, use {@link Elog.api.Base#getServerQuery getServerQuery} and check its instruction.
- * 	
+ * 
+ * ## Using eLog UI server with existing server services
+ * If you are using eLog UI for existing server services,  {@link Elog.api.Base#getServerQuery getServerQuery}
+ * is what you should modify to work with your system. You may also want to modify 
+ * {@link Elog.api.Base#commands commands} to specify your server services.
+ * 
  */
 Ext.define('Elog.api.Base', {
-	// extend: 'Elog.controller.Base',
 	requires: [
-       // 'Elog.controller.Base',
-	   // XXX: Commented out due to the loading error in iOS simluator when not packaged with Sencha Touch, May 13th, 2013
-       // 'Ext.device.Connection'
+    	'Ext.data.JsonP',
     ],
 	config: {
+		/**
+		 * pictos icon url base
+		 * @type String
+		 */
 		pictosIconBaseUrl: window.location.origin+"/lab/elog/sdk/sencha-touch/resources/themes/images/default/pictos/",
+		/**
+		 * External icon url base
+		 * @type String
+		 */
 		externalIconBaseUrl: window.location.origin+"/lab/elog/sdk/library/buttoniconcollection/",
+		/**
+		 * Map icons url base
+		 * @type String
+		 */
 		mapIconBaseUrl: window.location.origin+"/lab/elog/sdk/library/mapiconscollection-markers/",
 	
-		name: "eLifeLog Javascript API base class",
+		name: "eLog Javascript API base class",
 		/**
-		 * List of eLifelog server service commands
+		 * Array of eLog server service commands.
+		 * For the service call, use {@link Elog.api.Base#getServerQuery getServerQuery} and check its instruction.
+		 * @type Array
 		 */
 		commands: {
 			// Administration
-			/**w
-			 * Check user information
-			 * 
-			 * @type String
-			 */
 			checkUserInformation: 'Admin.base.CheckUserInformation',
             registerUser: 'Admin.base.RegisterUser',
             getUserApiKey: 'Admin.base.GetUserApiKey',
@@ -89,7 +100,15 @@ Ext.define('Elog.api.Base', {
             // Sensor Key value
             getSensorData: 'Media.android.GetSensorData',
 		},
+		/**
+		 * Array of registered errors
+		 * @type Array
+		 */
 		elogError: [],
+		/**
+		 * Array of registered status information
+		 * @type Array
+		 */
 		elogStatus: [],
         
         /**
@@ -112,20 +131,17 @@ Ext.define('Elog.api.Base', {
 	
     constructor: function(cfg) {
     	this.initConfig(cfg);
-
-    	// TODO: This directory retrieval method should be carefully checked later.
-    	// this.setMapIconUrl(window.location.origin+"/lab/elog/sdk/library/mapiconscollection-markers/");
 	    
     	return this;
     },
     
     /**
-     * Unified server call function
+     * Unified eLog server call function. If using on existing server services, this routine is what you should modify to work with your system.
      * 
-     * @param {String} config E-log server API call command name. This value must exist and conform the eLog server API call name.
+     * @param {String} config eLog server call parameters object
      * @param {String} config.serverUrl E-log server Url. This is used when a user logs in. This URL should contain the complete server address. For instance, http://www.yourhost.com/server/index.php
      * @param {String} config.apiKey User's server call API key. If not exists, it will check from the cookie or else fail.
-     * @param {String} config.command Command name
+     * @param {String} config.command E-log server API call command name. This value must exist and conform the eLog server API call name.
      * @param {Object} config.params Command params
      * @param {Function} config.onSuccess A callback function on success
      * @param {Object} config.onSuccess.oResult A server responce
@@ -653,6 +669,8 @@ Ext.define('Elog.api.Base', {
 	    }
 	    
 	    // In case a user does not have a user account or user's web browser does not accept the cookie
+	    // XXX Temporarily disable cookie. 19 Jan 2015
+	    /*
 	    if (c_name == "user_key") {
 	    	// Return demo key
 	    	return unescape("4999d97fa98b40a34412ac393a90e43f17a6b896");
@@ -669,6 +687,7 @@ Ext.define('Elog.api.Base', {
 	    else if (c_name == "elogMapCenterLat") {
 	    	return unescape("44.998664331093565");
 	    }
+	    */
     },
     
     /**

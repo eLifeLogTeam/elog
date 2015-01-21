@@ -89,7 +89,12 @@ Ext.define('Elog.controller.admin.LogIn', {
 	onRunLogIn: function() {
 		if (this.getUserManager() !== undefined) {
 			if (typeof this.getUserManager().getCookie('user_key') !== "undefined") {
-				this.onLogOut();
+				if (this.getRunLogIn().getText() == 'Sign out') {
+					this.onLogOut();
+				}
+				else {
+					this.onLogIn();
+				}
 			}
 			else {
 				this.onLogIn();
