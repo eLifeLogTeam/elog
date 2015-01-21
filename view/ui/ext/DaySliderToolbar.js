@@ -1,59 +1,25 @@
 /**
- * A time slider with the start time and the end time selector
+ * A time slider showing the current selected time with the fixed start time and end time duration.
  * 
  * ## Example
  *
  *     @example preview
- *     	Ext.create('Elog.view.ui.ext.TimeSliderToolbar', {
+ *     	Ext.create('Elog.view.ui.ext.DaySliderToolbar', {
  *     });
  *     
  * 
  */
-Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
+Ext.define('Elog.view.ui.ext.DaySliderToolbar', {
     extend: 'Ext.Toolbar',
     requires: [
        'Ext.Toolbar',
-       'Elog.view.ui.ext.TimeSlider',
+       'Elog.view.ui.ext.SensorStatisticsDataView'
     ],
     mixins: ['Elog.view.ui.Mixin'],
-    xtype: 'elogTimeSliderToolbar',
+    xtype: 'elogDaySliderToolbar',
     config : {
         // docked: 'bottom',
-        items: [
-        /*
-        { 
-            xtype: 'button',
-            width: '5%',
-            id: 'idChildTimeSliderToolbarStartPause',
-            iconCls: 'play_black1',
-            handler: function() {
-            	if (this.getIconCls() == 'play_black1') {
-            		this.setIconCls('pause');
-            	}
-            	else {
-            		this.setIconCls('play_black1');
-            	}
-            },
-        },{ 
-            xtype: 'selectfield',
-            width: '5%',
-            id: 'idChildTimeSliderToolbarPlaySpeed',
-            iconCls: 'speedometer2',
-            options: [
-            	{text: '1s', value: '1'},
-            	{text: '2s', value: '2'},
-            	{text: '10s', value: '10'},
-            	{text: '30s', value: '30'},
-            	{text: '1m', value: '60'},
-            	{text: '2m', value: '120'},
-            	{text: '10m', value: '600'},
-            	{text: '30m', value: '1800'},
-            	{text: '1h', value: '3600'},
-            	{text: '2h', value: '7200'},
-            	{text: '10h', value: '36000'},
-            	{text: '30h', value: '108000'},
-            ]
-        },*/{
+        items: [{
         	id: 'idChildTimeSliderToolbarSetTimeRange',
         	align: 'left',
             width: '5%',
@@ -64,87 +30,23 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
             	var oTimeSliderToolbar = this.getParent();
                 
             	var oMenus = Ext.Viewport.getMenus();
-		            	
-            	if (!oMenus.hasOwnProperty('bottom') || oMenus['bottom'] == null) {
-	            	var calendarPanel = Ext.create('Ext.Menu', {
-						width: '100%',
-	    				height: Ext.os.deviceType == 'Phone' ? 220: '25%',
-						items: [{
-					    	xtype: 'calendar',
-							id: 'idChildTimeSliderToolbarTimeRangeSelector',
-							width: '100%',
-							height: '100%',
-							viewConfig: {
-							    viewMode: 'month',
-							    weekStart: 1,
-							    value: (oApiBase.getCookie('elogStartTime')) ? (new Date(oApiBase.getCookie('elogStartTime'))) : new Date(2013,8-1,6,20,0,1),
-							    // When checking the source, viewConfig has only currentDate entity, not value
-							    currentDate: (oApiBase.getCookie('elogStartTime')) ? (new Date(oApiBase.getCookie('elogStartTime'))) : new Date(2013,8-1,6,20,0,1)
-							},
-							listeners: {
-								initialize: function( oCalendar, eOpts ) {
-							    	// var oApiBase = new Elog.api.Base();
-							    	
-									if (typeof oApiBase.getCookie('elogStartTime') !== "undefined") {
-										oCalendar.setValue(new Date(oApiBase.getCookie('elogStartTime')));
-										oCalendar.getViewConfig.currentDate = new Date(oApiBase.getCookie('elogStartTime'));
-							    	}
-							    },
-							    
-								periodchange: function( oCalendar, minDate, maxDate, direction, eOpts ) {
-									
-								},
-								
-								selectionchange: function( oCalendar, newDate, oldDate, eOpts ) {
-									var oSlider = oTimeSliderToolbar;
-									// var oApiBase = new Elog.api.Base();
-									
-									var oStartTime = newDate;
-									var oEndTime = new Date(oStartTime.toDateString());
-									
-									oEndTime.setHours(oEndTime.getHours()+23);
-									oEndTime.setMinutes(59);
-									oEndTime.setSeconds(59);
-									
-									var oChildTimeSliderToolbarStartTime = oSlider.getItems().get("idChildTimeSliderToolbarStartTime");
-									var oChildTimeSliderToolbarTimeSlider = oSlider.getItems().get('idChildTimeSliderToolbarTimeSlider');
-									var oChildTimeSliderToolbarEndTime = oSlider.getItems().get('idChildTimeSliderToolbarEndTime');
-										
-									oChildTimeSliderToolbarStartTime.setValue(oStartTime);
-									oChildTimeSliderToolbarEndTime.setValue(oEndTime);
-									oChildTimeSliderToolbarTimeSlider.setValue(oStartTime.getTime());
-									
-									oApiBase.setCookie("elogStartTime", oStartTime);
-									oApiBase.setCookie("elogEndTime", oEndTime);
-									
-									// oChildTimeSliderToolbarSetTimeRange.overlay.hide();
-									Ext.Viewport.toggleMenu('bottom');
-								},
-							}
-						}]
-					 });
-					
-					 Ext.Viewport.setMenu(calendarPanel, {
-					     side: 'bottom',
-					     zIndex: 300,
-					     // reveal: true
-					 });
+            	if (oMenus.hasOwnProperty('bottom') && oMenus['bottom'] != null) {
+	            	Ext.Viewport.toggleMenu('bottom');
             	}
-				
-				Ext.Viewport.toggleMenu('bottom');
         	},
         },{
             xtype: 'textfield',
             id: 'idChildTimeSliderToolbarStartTime',
             name: 'Start',
             label: '',
-            // labelCls: 'timeSliderLabel',
+            // labelCls: 'TimeSliderLabel',
             // cls: 'smallSizeTextFont',
         	labelWrap: true,
             // style: 'font: 12px Arial black',
             // value: new Date(2013,8-1,6,20,0,1), 
             value: new Date(2014,8-1,12,0,0,1), 
-            width: '20%',
+            width: '1%',
+            hidden: true,
             listeners: {
             	initialize: function () {
             		var oApiBase = new Elog.api.Base();
@@ -183,7 +85,7 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
 	        // maxValue: new Date(2013,8-1,6,20,09,59).getTime(),
     		minValue: new Date(2014,8-1,12,0,0,1).getTime(),
 	        maxValue: new Date(2014,8-1,12,23,59,59).getTime(),
-    		width: '35%',
+    		width: '40%',
 	        listeners: {
 		    	initialize: function() {
 		    		var oApiBase = new Elog.api.Base();
@@ -221,6 +123,12 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
 		    					caller: oSlider,
 		    				}
 		    			});
+		    			
+		    			var oChildTimeSliderToolbarSelectedTime = Ext.getCmp('idChildTimeSliderToolbarSelectedTime');
+		    			if (typeof oChildTimeSliderToolbarSelectedTime !== "undefined") {
+		    				var oSelectedTime = new Date(oUnixTimestamp*1000);
+		    				oChildTimeSliderToolbarSelectedTime.setValue(oSelectedTime);
+		    			}
 	    			}
 	    		},
 	    		/**
@@ -242,17 +150,37 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
 		    					caller: oSlider,
 		    				}
 		    			});
+		    			
+		    			var oChildTimeSliderToolbarSelectedTime = Ext.getCmp('idChildTimeSliderToolbarSelectedTime');
+		    			if (typeof oChildTimeSliderToolbarSelectedTime !== "undefined") {
+		    				var oSelectedTime = new Date(oUnixTimestamp*1000);
+		    				oChildTimeSliderToolbarSelectedTime.setValue(oSelectedTime);
+		    			}
 	    			}
 	    		},	    		
 			}
-	    },{
+	    },{ 
+            xtype: 'textfield',
+            id: 'idChildTimeSliderToolbarSelectedTime',
+            align: 'right',
+            name: 'End',
+            width: '45%',
+            label: '',
+            // labelCls: 'smallSizeTextFont',
+            // cls: 'smallSizeTextFont',
+        	labelWrap: true,
+            // style: 'font: 12px Arial black',
+            // value: new Date(2013,8-1,6,20,09,59), 
+            value: new Date(2014,8-1,12,23,59,59)
+        },{
         	xtype: 'spacer',
         },{ 
             xtype: 'textfield',
             id: 'idChildTimeSliderToolbarEndTime',
             align: 'right',
             name: 'End',
-            width: '20%',
+            width: '1%',
+            hidden: true,
             label: '',
             // labelCls: 'smallSizeTextFont',
             // cls: 'smallSizeTextFont',
@@ -362,10 +290,12 @@ Ext.define('Elog.view.ui.ext.TimeSliderToolbar', {
 		var oChildTimeSliderToolbarStartTime = oSlider.getItems().get('idChildTimeSliderToolbarStartTime');
 		var oChildTimeSliderToolbarEndTime = oSlider.getItems().get('idChildTimeSliderToolbarEndTime');
 		var oChildTimeSliderToolbarTimeSlider = oSlider.getItems().get('idChildTimeSliderToolbarTimeSlider');
-			
+		var oChildTimeSliderToolbarSelectedTime = oSlider.getItems().get('idChildTimeSliderToolbarSelectedTime');
+							
     	// Initialize the value to the start time
     	oChildTimeSliderToolbarStartTime.setValue(oSlider.getStartTimestamp());
     	oChildTimeSliderToolbarEndTime.setValue(oSlider.getEndTimestamp());
+    	oChildTimeSliderToolbarSelectedTime.setValue(oSlider.getStartTimestamp());
     	
     	oChildTimeSliderToolbarTimeSlider.setMinValue(oSlider.getStartUnixtime()*1000);
     	oChildTimeSliderToolbarTimeSlider.setMaxValue(oSlider.getEndUnixtime()*1000);

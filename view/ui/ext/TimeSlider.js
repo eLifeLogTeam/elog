@@ -1,12 +1,5 @@
 /**
- * eLifeLog API: Time zone select field UI
- * 
- * This is the extension of [Sencha Touch Select field](http://docs.sencha.com/touch/2-0/#!/api/Ext.field.Select) 
- * for the timezone selection in eLog libraries. This icludes the list of all timezones that are currently supported by eLog libraries.
- * 
- * ## How to use
- * In designing the selection field in user GUI, use this field for timezone selection.
- * For instance when designing a media metadata tagger, you may use this field as time zone selector.
+ * A slider UI designed for time selection.
  * 
  * ## Example
  *
