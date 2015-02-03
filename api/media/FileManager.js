@@ -24,13 +24,10 @@ Ext.define('Elog.api.media.FileManager', {
      */
     isValidMedia : function(cfg) {
         oFileManager = this;
+        cfg.fileName = cfg.sourceFile;
         this.getServerQuery({
     		command: this.getCommands().isValidMedia,
-    		params: {
-    			userKey: cfg.userKey,
-                fileName: cfg.sourceFile, 
-                mediaType: cfg.mediaType
-    		},    		
+    		params: cfg,    		
     		onSuccess: function(oResult) {
     			if (typeof oResult.result !== "undefined") {
     				oFileManager.attachResult(oResult.result);
@@ -60,12 +57,10 @@ Ext.define('Elog.api.media.FileManager', {
     getPreview : function(cfg) {
         // Get preview data
     	oFileManager = this;
+    	cfg.fileName = cfg.sourceFile;
     	this.getServerQuery({
     		command: this.getCommands().getPreview,
-    		params: {
-                fileName: cfg.sourceFile, 
-                mediaType: cfg.mediaType
-    		},    		
+    		params: cfg,    		
     		onSuccess: function(oResult) {
     			if (typeof oResult.result !== "undefined") {
     				oFileManager.attachResult(oResult.result);
@@ -96,11 +91,10 @@ Ext.define('Elog.api.media.FileManager', {
     	if (cfg.sourceFile == '') return false;
     	
         oFileManager = this;
+        cfg.fileName = cfg.sourceFile
     	this.getServerQuery({
     		command: oFileManager.getCommands().removeMedia,
-    		params: {
-                fileName: cfg.sourceFile
-    		},    		
+    		params: cfg,    		
     		onSuccess: function(oResult) {
     			if (typeof oResult.result !== "undefined") {
     				oFileManager.attachResult(oResult.result);
@@ -131,16 +125,13 @@ Ext.define('Elog.api.media.FileManager', {
      */
     onLoadMedia : function(cfg) {
     	oFileManager = this;
+    	cfg.fileName = cfg.sourceFile;
+    	cfg.timeZone = cfg.mysqlTimeZone;
+    	
     	if (cfg.isDir === false || cfg.isDir == "false") {
     		this.getServerQuery({
         		command: this.getCommands().loadMedia,
-        		params: {
-                    fileName: cfg.sourceFile,
-    	            mediaType: cfg.mediaType,
-    	            isDir: cfg.isDir,
-    	            timeZone: cfg.mysqlTimeZone,
-    	            timeOffset: cfg.timeOffset
-        		},    		
+        		params: cfg,    		
         		onSuccess: function(oResult) {
         			if (typeof oResult.result !== "undefined") {
         				oFileManager.attachResult(oResult.result);
@@ -158,10 +149,7 @@ Ext.define('Elog.api.media.FileManager', {
     		// Register Job
     		this.getServerQuery({
         		command: this.getCommands().registerJob,
-        		params: {
-        			fileName: cfg.sourceFile,
-    	            mediaType: cfg.mediaType
-        		},    		
+        		params: cfg,    		
         		onSuccess: function(oResult) {
         			if (typeof oResult.result !== "undefined") {
         				oFileManager.attachResult(oResult.result);
@@ -198,16 +186,13 @@ Ext.define('Elog.api.media.FileManager', {
     	this.oJobStarted = true;
     	oFileManager = this;
     	
+    	cfg.fileName = cfg.sourceFile;
+        cfg.requestJobId = cfg.jobId;
+        cfg.timeZone = cfg.mysqlTimeZone;
+        
     	this.getServerQuery({
     		command: this.getCommands().loadMedia,
-    		params: {
-    			fileName: cfg.sourceFile,
-                mediaType: cfg.mediaType,
-                isDir: cfg.isDir,
-                requestJobId: cfg.jobId,
-                timeZone: cfg.mysqlTimeZone,
-                timeOffset: cfg.timeOffset
-    		},    		
+    		params: cfg,    		
     		onSuccess: function(oResult) {
     			if (typeof oResult.result !== "undefined") {
     				oFileManager.attachResult(oResult.result);
@@ -237,12 +222,13 @@ Ext.define('Elog.api.media.FileManager', {
      */
     onProgressMonitor : function() {
     	oFileManager = this;
+    	
+    	oFileManager.cfg.requestJobId = oFileManager.cfg.jobId,
+        oFileManager.cfg.updateLog = oFileManager.cfg.udpateLog
+
     	this.getServerQuery({
     		command: this.getCommands().getJobProgress,
-    		params: {
-    			requestJobId: oFileManager.cfg.jobId,
-                updateLog: oFileManager.cfg.udpateLog
-    		},    		
+    		params: oFileManager.cfg,    		
     		onSuccess: function(oResult) {
     			if (typeof oResult.result !== "undefined") {
     				oFileManager.attachResult(oResult.result);

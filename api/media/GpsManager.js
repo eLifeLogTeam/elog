@@ -39,17 +39,15 @@ Ext.define('Elog.api.media.GpsManager', {
      */
     getMediabyTimeSpan : function (cfg) {
     	oGpsManager = this;
+    	
+    	cfg.mediaType = 'gps';
+		cfg.latitude = ( cfg.mapCenter != null) ? cfg.mapCenter.lat() : null;
+        cfg.longitude = ( cfg.mapCenter != null) ? cfg.mapCenter.lng() : null;
+        cfg.maxCount = (cfg.hasOwnProperty("maxCount") ? cfg.maxCount : 1000);
+        
         this.getServerQuery({
     		command: this.getCommands().gpsGetMediabyTimespan,
-    		params: {
-    			mediaType: 'gps',
-    			latitude: ( cfg.mapCenter != null) ? cfg.mapCenter.lat() : null,
-                longitude: ( cfg.mapCenter != null) ? cfg.mapCenter.lng() : null,
-                distance: ( cfg.distance != null) ? cfg.distance : null,
-                timeFrom: cfg.timeFrom,
-                timeTo: cfg.timeTo,
-            	maxCount: (cfg.hasOwnProperty("maxCount") ? cfg.maxCount : 1000),
-    		},
+    		params: cfg,
     		onSuccess: function(oResult) {
     			if (typeof oResult.root == "undefined") {
     				oGpsManager.logError('Server connection failed. Check the internet connection');
@@ -334,20 +332,16 @@ Ext.define('Elog.api.media.GpsManager', {
      */
     getGpsRegionbyRadius : function (cfg) {
     	oGpsManager = this;
+    	cfg.lat1 = cfg.mapCenter.lat();
+        cfg.log1 = cfg.mapCenter.lng();
+        cfg.lat2 = cfg.mapBound.getNorthEast().lat();
+        cfg.log2 = cfg.mapBound.getNorthEast().lng();
+        cfg.lat3 = cfg.mapBound.getSouthWest().lat();
+        cfg.log3 = cfg.mapBound.getSouthWest().lng();
+        
         this.getServerQuery({
     		command: this.getCommands().getGpsRegionbyRadius,
-    		params: {
-    			radius: cfg.radius,
-                maxRadius: cfg.maxRadius,
-                lat1: cfg.mapCenter.lat(),
-                log1: cfg.mapCenter.lng(),
-                lat2: cfg.mapBound.getNorthEast().lat(),
-                log2: cfg.mapBound.getNorthEast().lng(),
-                lat3: cfg.mapBound.getSouthWest().lat(),
-                log3: cfg.mapBound.getSouthWest().lng(),
-                timeFrom: cfg.timeFrom,
-                timeTo: cfg.timeTo
-    		},    		
+    		params: cfg,    		
     		onSuccess: function(oResult) {
     			if (typeof oResult.root == "undefined") {
     				oGpsManager.logError('Server connection failed. Check the internet connection');

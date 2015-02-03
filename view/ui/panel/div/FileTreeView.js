@@ -1,6 +1,8 @@
 /**
  * File tree view div panel
  * 
+ * TODO: Let's try other file manager later -- http://elfinder.org 
+ * 
  * @author pilhokim
  * 
  * ## Example
@@ -118,7 +120,7 @@ Ext.define('Elog.view.ui.panel.div.FileTreeView', {
 								command: 'File.base.GetUserFileDir',
 								params : Ext.JSON.encode({
 									userKey: h.getCookie('user_key'),
-									fileName: t
+									fileName: decodeURI(t)
 								})
 							},  
 							success: function(data) {
@@ -146,7 +148,8 @@ Ext.define('Elog.view.ui.panel.div.FileTreeView', {
 										$(this).parent().parent().find('LI.directory').removeClass('expanded').addClass('collapsed');
 									}
 									$(this).parent().find('UL').remove(); // cleanup
-									showTree( $(this).parent(), escape($(this).attr('rel').match( /.*\// )) );
+//									showTree( $(this).parent(), escape($(this).attr('rel').match( /.*\// )) );
+									showTree( $(this).parent(), encodeURI($(this).attr('rel').match( /.*\// )) );
 									$(this).parent().removeClass('collapsed').addClass('expanded');
 								} else {
 									// Collapse
@@ -164,7 +167,8 @@ Ext.define('Elog.view.ui.panel.div.FileTreeView', {
 					// Loading message
 					$(this).html('<ul class="jqueryFileTree start"><li class="wait">' + o.loadMessage + '<li></ul>');
 					// Get the initial file list
-					showTree( $(this), escape(o.root) );
+				//	showTree( $(this), escape(o.root) );
+					showTree( $(this), encodeURI(o.root) );
 				});
 			}
 		});

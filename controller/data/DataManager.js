@@ -71,6 +71,7 @@ Ext.define('Elog.controller.data.DataManager', {
 			timeAdjustPane: '#idElogTimeAdjustPane', 
 			timeRange: '#idElogTimeRange',
 			timeZone: '#idElogTimeZone',
+			archiveFile: '#idElogArchiveFile',
 			videoPreview: '#idElogVideoPreview'
 		},
 
@@ -399,6 +400,7 @@ Ext.define('Elog.controller.data.DataManager', {
         	mediaType: this.getMediaType().getValue(),
         	isDir: 'false',
         	mysqlTimeZone: oMySQLTimeZone,
+        	archiveFile: this.getArchiveFile().getValue(),
         	timeOffset: oFileManager.oTimeOffset,
         	onSuccess: function (data) {
         		oDataManager.attachResult(data.result);
@@ -478,6 +480,7 @@ Ext.define('Elog.controller.data.DataManager', {
         	mediaType: this.getMediaType().getValue(),
         	isDir: 'true',
         	mysqlTimeZone: oMySQLTimeZone,
+        	archiveFile: this.getArchiveFile().getValue(),
         	timeOffset: oFileManager.oTimeOffset,
         	onSuccess: function (data) {
         		oDataManager.attachResult(data.result);

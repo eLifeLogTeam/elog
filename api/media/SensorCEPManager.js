@@ -82,14 +82,14 @@ Ext.define('Elog.api.media.SensorCEPManager', {
      */
     getCEPSensorDatabyTimeSpan : function (cfg) {
     	var oSensorCEPManager = this;
+    	
+    	cfg.sensors = (typeof cfg.sensors != "undefined") ? cfg.sensors : null;
+        cfg.timeFrom = (typeof cfg.timeFrom != "undefined") ? cfg.timeFrom : null;
+        cfg.timeTo = (typeof cfg.timeTo != "undefined") ? cfg.timeTo : null;
+                
     	this.getServerQuery({
     		command: this.getCommands().getSensorDatainNestedList,
-    		params: {
-    			mediaType: cfg.mediaType,
-    			sensors: (typeof cfg.sensors != "undefined") ? cfg.sensors : null,
-                timeFrom: (typeof cfg.timeFrom != "undefined") ? cfg.timeFrom : null,
-                timeTo: (typeof cfg.timeTo != "undefined") ? cfg.timeTo : null
-    		},
+    		params: cfg,
     		onSuccess: function(oResult) {
     			if (typeof oResult.root == "undefined") {
     				oSensorCEPManager.logError('Server connection failed. Check the internet connection');
@@ -141,16 +141,15 @@ Ext.define('Elog.api.media.SensorCEPManager', {
     	
     	var oUtil = new Ext.create('Elog.api.utility.Base');
     	
+    	cfg.mediaType = cfg.mediaType;
+		cfg.pattern = cfg.pattern;
+		cfg.sensors = (typeof cfg.sensors != "undefined") ? cfg.sensors : null;
+	    cfg.timeFrom = (typeof cfg.timeFrom != "undefined") ? cfg.timeFrom : null;
+	    cfg.timeTo = (typeof cfg.timeTo != "undefined") ? cfg.timeTo : null;
+	    
         this.getServerQuery({
     		command: this.getCommands().runCEP,
-    		params: {
-    			mediaType: cfg.mediaType,
-    			// pattern: oUtil.base64Decode(cfg.pattern),
-    			pattern: cfg.pattern,
-    			sensors: (typeof cfg.sensors != "undefined") ? cfg.sensors : null,
-                timeFrom: (typeof cfg.timeFrom != "undefined") ? cfg.timeFrom : null,
-                timeTo: (typeof cfg.timeTo != "undefined") ? cfg.timeTo : null
-    		},
+    		params: cfg,
     		onSuccess: function(oResult) {
     			if (typeof oResult.root == "undefined") {
     				oSensorCEPManager.logError('Server connection failed. Check the internet connection');

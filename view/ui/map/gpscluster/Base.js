@@ -418,7 +418,8 @@ Ext.define('Elog.view.ui.map.gpscluster.Base', {
     getMapBoundary : function() {
     	this.setMapCenter(this.getMap().getCenter());
     	
-    	if (typeof this.getMap().getBounds() == "undefined") return false;
+    	if (typeof this.getMap().getBounds() == "undefined" ||
+    		(this.getMap().getBounds() == null)) return false;
     	
         this.setMapBounds(this.getMap().getBounds());
         

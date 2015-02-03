@@ -14,7 +14,8 @@ Ext.define('Elog.view.panel.data.FileImportPanel', {
        'Ext.Panel',
        'Elog.view.ui.panel.div.ProgressBar',
        'Elog.view.ui.ext.TimeZoneSelectField',
-       'Elog.view.ui.ext.MediaTypeSelectField'
+       'Elog.view.ui.ext.MediaTypeSelectField',
+       'Ext.form.Toggle'
     ],
     xtype: 'elogFileImportPanel',
     config : {
@@ -63,6 +64,12 @@ Ext.define('Elog.view.panel.data.FileImportPanel', {
                 labelWidth: '25%'
             },
             items: [{
+            	id: 'idElogArchiveFile',
+                name: 'idElogArchiveFile',
+			    xtype: 'togglefield',
+			    label: 'Archive',
+			    value: true
+            },{
                 xtype: 'elogMediaTypeSelectField',
                 id: 'idElogMediaType',
                 name: 'idElogMediaType',
