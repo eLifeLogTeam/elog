@@ -88,7 +88,7 @@ git clone https://github.com/daverogers/jQueryFileTree.git
 
 Now you are all set to using eLog GUI libraries :)
 
-# eLog APIs Copyrights
+## eLog APIs Copyrights
 
 First, thanks for using the eLog library. Before claiming any legal statements of our copyrights, let us first explain why we open this library and then proceed to the formal one.
 
