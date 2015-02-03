@@ -1,3 +1,4 @@
+@@ -1,111 +0,0 @@
 # eLog library client UI
 
 This is the collection eLog UI component developed atop [Sencha Touch](http://www.sencha.com/products/touch/). eLog libarries were first released in 2010 and have grown up since then. Its API usage and examples are provided with a rich documentation and in-line demos at [eLog documentation](http://www.elifelog.org/lab/elog_doc). Please visit the documentation site and check the detail there. In case of Q&A, please create an issue page here.
@@ -5,7 +6,6 @@ This is the collection eLog UI component developed atop [Sencha Touch](http://ww
 ## API Documentation
 See http://www.elifelog.org/lab/elog_doc
 
-<<<<<<< HEAD
 ## Demos
 ### On-line Demo
 On-line demo is available at (http://elifelog.org/lab/elog/examples/mediamanager/).
@@ -24,8 +24,6 @@ See our list of video demos
 |Image slideshow     | Image cover flow view | Data manager |
 | [![Clustered GPS view](http://img.youtube.com/vi/12y4f9WY_KM/0.jpg)](https://www.youtube.com/v/12y4f9WY_KM?version=3&autoplay=1&vq=hd1080)      | [![ GPS path view](http://img.youtube.com/vi/Gy0yEJvO0LY/0.jpg)](https://www.youtube.com/v/Gy0yEJvO0LY?version=3&autoplay=1&vq=hd1080)      |   [![Image thumbnail view](http://img.youtube.com/vi/4uR8rw-fKJQ/0.jpg)](https://www.youtube.com/v/4uR8rw-fKJQ?version=3&autoplay=1&vq=hd1080) |
 
-=======
->>>>>>> FETCH_HEAD
 ## Getting Started with eLog APIs
 
 The below figure gives an abstract view of eLog service structure. It basically reads external sources and parse for the data analysis and then save the result back to the store to archive user's life logs. External clients connected to the server through HTTP/JSON call can access archived lifelog. Our APIs supports all these process from both server and client sides.
@@ -91,35 +89,6 @@ git clone https://github.com/daverogers/jQueryFileTree.git
 
 Now you are all set to using eLog GUI libraries :)
 
-<<<<<<< HEAD
-=======
-
-## Demos
-### On-line Demo
-On-line demo is available at (http://elifelog.org/lab/elog/examples/mediamanager/).
-
-### Video Demos
-See our list of video demos 
-
-| Column1        | Column3           | Column3  |
-| ------------- |-------------| -----|
-|Complex event pattern editor     | Composite Key-value-map viewer | Composite GPS path image view |
-| [![Complex event pattern editor](http://img.youtube.com/vi/YcXjfb0WQbg/0.jpg)](https://www.youtube.com/v/YcXjfb0WQbg?version=3&autoplay=1&vq=hd1080)      | [![ Composite Key-value-map viewer](http://img.youtube.com/vi/U036e_ta5b8/0.jpg)](https://www.youtube.com/v/U036e_ta5b8?version=3&autoplay=1&vq=hd1080)      |   [![Composite GPS path image view](http://img.youtube.com/vi/2dYIYQKQ75Y/0.jpg)](https://www.youtube.com/v/2dYIYQKQ75Y?version=3&autoplay=1&vq=hd1080) |
-|Composite GPS cluster image view     | Composite thumbnaild and slideshow view | Composite GPS data path viewer |
-| [![Composite GPS cluster image view](http://img.youtube.com/vi/tza5lfm1xzI/0.jpg)](https://www.youtube.com/v/tza5lfm1xzI?version=3&autoplay=1&vq=hd1080)      | [![ Composite thumbnaild and slideshow view](http://img.youtube.com/vi/GT-nMxO0V4Q/0.jpg)](https://www.youtube.com/v/GT-nMxO0V4Q?version=3&autoplay=1&vq=hd1080)      |   [![Composite GPS data path viewer](http://img.youtube.com/vi/2dYIYQKQ75Y/0.jpg)](https://www.youtube.com/v/2dYIYQKQ75Y?version=3&autoplay=1&vq=hd1080) |
-|Clustered GPS view     | GPS path view | Image thumbnail view |
-| [![Clustered GPS view](http://img.youtube.com/vi/tza5lfm1xzI/0.jpg)](https://www.youtube.com/v/tza5lfm1xzI?version=3&autoplay=1&vq=hd1080)      | [![ GPS path view](http://img.youtube.com/vi/J0BR5mMulA8/0.jpg)](https://www.youtube.com/v/J0BR5mMulA8?version=3&autoplay=1&vq=hd1080)      |   [![Image thumbnail view](http://img.youtube.com/vi/nUDY5cZ_BBU/0.jpg)](https://www.youtube.com/v/nUDY5cZ_BBU?version=3&autoplay=1&vq=hd1080) |
-|Image slideshow     | Image cover flow view | Data manager |
-| [![Clustered GPS view](http://img.youtube.com/vi/12y4f9WY_KM/0.jpg)](https://www.youtube.com/v/12y4f9WY_KM?version=3&autoplay=1&vq=hd1080)      | [![ GPS path view](http://img.youtube.com/vi/Gy0yEJvO0LY/0.jpg)](https://www.youtube.com/v/Gy0yEJvO0LY?version=3&autoplay=1&vq=hd1080)      |   [![Image thumbnail view](http://img.youtube.com/vi/4uR8rw-fKJQ/0.jpg)](https://www.youtube.com/v/4uR8rw-fKJQ?version=3&autoplay=1&vq=hd1080) |
-
-
-## More questions?
-Feel free to [post an issue][issues].
-
-[issues]: https://github.com/eLifeLogTeam/elog/issues
-
-
->>>>>>> FETCH_HEAD
 # eLog APIs Copyrights
 
 First, thanks for using the eLog library. Before claiming any legal statements of our copyrights, let us first explain why we open this library and then proceed to the formal one.
@@ -133,7 +102,6 @@ You can develop and distribute Apps or software programs using our libraries but
 For formal copyright stuffs, while keeping the above condition mandatory, <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">eLifeLog.org APIs</span> provided by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.elifelog.org" property="cc:attributionName" rel="cc:attributionURL">http://www.elifelog.org</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a> based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.elifelog.org/lab/elog_doc" rel="dct:source">www.elifelog.org</a>.
  
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
-<<<<<<< HEAD
 
 
 More questions?
@@ -141,6 +109,4 @@ More questions?
 
 Feel free to [post an issue][issues].
 
-[issues]: https://github.com/eLifeLogTeam/elog/issues
-=======
->>>>>>> FETCH_HEAD
+[issues]: https://github.com/eLifeLogTeam/elog/issues 
