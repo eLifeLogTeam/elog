@@ -106,6 +106,4 @@ For formal copyright stuffs, while keeping the above condition mandatory, <span 
 More questions?
 ---------------
 
-Feel free to [post an issue][issues].
-
-[issues]: https://github.com/eLifeLogTeam/elog/issues 
+Feel free to post issues: https://github.com/eLifeLogTeam/elog/issues
