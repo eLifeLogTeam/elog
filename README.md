@@ -1,6 +1,6 @@
 # eLog library client UI
 
-This is the collection eLog UI component developed atop [Sencha Touch](http://www.sencha.com/products/touch/). eLog libarries were first released in 2010 and have grown up since then. Its API usage and examples are provided with a rich documentation and in-line demos at [eLog documentation](http://www.elifelog.org/lab/elog_doc). Please visit the documentation site and check the detail there. In case of Q&A, please create an issue page here.
+This is a collection of eLog UI components. eLog libarries were first released in 2010 and have grown up since then. Its API usage and examples are provided with a rich documentation and in-line demos. Please visit the documentation site at [eLog documentation](http://www.elifelog.org/lab/elog_doc) and check the detail there. In case of Q&A, please create an issue page here. eLog UI uses the open source [Sencha Touch](http://www.sencha.com/products/touch/) framework. 
 
 ## API Documentation
 See http://www.elifelog.org/lab/elog_doc
@@ -86,15 +86,15 @@ http://jqueryui.com/resources/download/jquery-ui-1.11.2.zip
 git clone https://github.com/daverogers/jQueryFileTree.git
 ```
 
-Now you are all set to using eLog GUI libraries :)
+Now you are all set. Start using eLog GUI libraries :)
 
 ## eLog APIs Copyrights
 
-First, thanks for using the eLog library. Before claiming any legal statements of our copyrights, let us first explain why we open this library and then proceed to the formal one.
+First, thanks for using the eLog library. Before claiming any legal statements of our copyrights, let us first explain why we open this library and after I will add some formal copyright definitions.
 
-The aim of this research is helping people manage their own lifelogs and precious memories into their own storage. Challenges are that there exists numerous types of lifelogs equal to the number of people out there. What we are trying is to prepare a fundamental tool to help users easily start logging their lifelogs in a systematic way. We also wish a user to have full and sole priviledges on the data access and management.
+The aim of this research is helping people manage their lifelogs and their precious memories into their own storage. Challenges are that there exists numerous types of lifelogs equal to the number of people out there. What we are trying is to prepare a fundamental tool to help them easily start logging their lifelogs in a systematic way. We also wish a user to have full and sole priviledges on their own data.
 
-In this aspect, while all rights of codes published here are reservered to the eLifeLog.org, developers may freely use our codes for personal, educational and research purposes. However we do not allow the commercial use and the use by any company for profit in any steps of your development and products. (Note: One exception is the user interface part which we develop atop Sencha Touch. We decide to follow the original license (GPL V3). eLog UI parts are separately published at GitHub (https://github.com/eLifeLogTeam/elog/))
+In this aspect, while all rights of codes published here are reservered to the eLifeLog.org, developers may freely use our codes for personal, educational and research purposes. However we do not allow the commercial use and the use by any company for a profit in any steps of your development and products. (Note: One exception is the user interface part which we develop atop Sencha Touch. We decide to follow the original license (GPL V3). eLog UI parts are separately published at GitHub (https://github.com/eLifeLogTeam/elog/))
 
 You can develop and distribute Apps or software programs using our libraries but they should be distributed for free and you should not collect users's lifelog to your server or to any cloud servers in any cases by any means. In other words, your Apps or software should not collect any information (even login IPs) about the user. Your app should work independently (i.e. a strandalone App) without the need for connection or communication with your server. References to our code must be embedded in your codes and appeared in your credits. You may inform us to know either to test or to introduce your work at this web site. 
 
