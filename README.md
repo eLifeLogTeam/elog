@@ -12,7 +12,6 @@ On-line demo is available at (http://elifelog.org/lab/elog/examples/mediamanager
 ### Video Demos
 See our list of video demos 
 
-| Column1        | Column3           | Column3  |
 | ------------- |-------------| -----|
 |Complex event pattern editor     | Composite Key-value-map viewer | Composite GPS path image view |
 | [![Complex event pattern editor](http://img.youtube.com/vi/YcXjfb0WQbg/0.jpg)](https://www.youtube.com/v/YcXjfb0WQbg?version=3&autoplay=1&vq=hd1080)      | [![ Composite Key-value-map viewer](http://img.youtube.com/vi/U036e_ta5b8/0.jpg)](https://www.youtube.com/v/U036e_ta5b8?version=3&autoplay=1&vq=hd1080)      |   [![Composite GPS path image view](http://img.youtube.com/vi/2dYIYQKQ75Y/0.jpg)](https://www.youtube.com/v/2dYIYQKQ75Y?version=3&autoplay=1&vq=hd1080) |
